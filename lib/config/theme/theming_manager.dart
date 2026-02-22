@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:movies/core/theming/colors_manager.dart';
+import 'package:movies/core/theming/styles_manager.dart';
 
-class ThemeManager{
+class ThemeManager {
   static final ThemeData light = ThemeData(
 
   );
@@ -14,6 +15,23 @@ class ThemeManager{
       centerTitle: true,
     ),
     //scaffoldBackgroundColor: ColorsManager.primaryDark,
-
+textTheme: TextTheme(
+  headlineSmall: StylesManager.description20regular,
+  headlineMedium: StylesManager.titleMedium24Bold,
+  headlineLarge: StylesManager.titleLarge36Medium,
+  titleSmall: StylesManager.text20
+),
+outlinedButtonTheme: OutlinedButtonThemeData(
+  style: OutlinedButton.styleFrom(
+    foregroundColor: ColorsManager.goldenYellow,
+    side: BorderSide(
+      color: ColorsManager.goldenYellow,
+      width: 2.w,
+    ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.r),
+      ),
+  ),
+),
   );
 }

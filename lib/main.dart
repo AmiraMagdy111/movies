@@ -4,6 +4,7 @@ import 'movies_app.dart';
 
 void main() {
   runApp(MoviesApp(appRouter: RoutingManager()));
+
 }
 
 
