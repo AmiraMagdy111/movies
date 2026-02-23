@@ -45,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     } else {
       Navigator.pushReplacementNamed(
         context,
-        Routes.homeScreen,
+        Routes.loginScreen,
       );
     }
   }
