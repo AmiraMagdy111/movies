@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/core/theming/colors_manager.dart';
+import 'package:movies/core/helpers/text_manager.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
 import '../../../core/helpers/image_icons_svgs_helper.dart';
+import '../../../core/routing/routes.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManager.primaryBlack,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -67,8 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 22),
                 CustomTextFormField(
                   controller: passwordController,
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
+                  hintText: TextManager.enterYourPassword,
+                  labelText: TextManager.password,
                   prefixIcon: Icons.lock_outline,
                   obscureText: isObscure,
                   suffixIcon: IconButton(
@@ -93,28 +92,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, Routes.resetPassword);
+                      },
                       child: Text(
-                        'Forget Password ?',
+                        TextManager.forgetPassword,
                         style: StylesManager.googleFont14OrangeRegular,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 33),
-                CustomElevatedButton(text: 'Login', onPress: () {}),
+                CustomElevatedButton(text: TextManager.login, onPress: () {}),
                 SizedBox(height: 22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      TextManager.dontHaveAnAccount,
                       style: StylesManager.googleFont14WhiteRegular,
                     ),
                     TextButton(
                       onPressed: () {},
                       child: Text(
-                        'Create One',
+                       TextManager.createOne,
                         style: StylesManager.googleFont14OrangeBold,
                       ),
                     ),
@@ -122,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 22),
                 CustomElevatedButton(
-                  text: 'Login With Google',
+                  text: TextManager.loginWithGoogle,
                   prefixIcon: Image.asset(IconsManager.googleIcon),
                   onPress: () {},
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
+import 'package:movies/core/theming/styles_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? labelText;
   final IconData? prefixIcon;
   final Widget? suffixIcon;
+
   final TextInputType? keyboardType;
   final bool obscureText;
   final String? Function(String?)? validator;
@@ -45,7 +47,8 @@ class CustomTextFormField extends StatelessWidget {
         hintText: hintText,
         labelText: labelText,
         prefixIcon: prefixIcon != null ? Icon(prefixIcon,color: ColorsManager.white) : null,
-        suffixIcon: suffixIcon != null ? Icon(suffixIcon as IconData?,color: ColorsManager.white) : null,
+        //suffixIcon: suffixIcon != null ? Icon(suffixIcon as IconData,color: ColorsManager.white) : null,
+        suffixIcon: suffixIcon,
         filled: true,
         fillColor: ColorsManager.secondaryGrey,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -53,6 +56,8 @@ class CustomTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
+        hintStyle: StylesManager.hintTextStyle ,
+        labelStyle: StylesManager.hintTextStyle,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: ColorsManager.secondaryGrey),
