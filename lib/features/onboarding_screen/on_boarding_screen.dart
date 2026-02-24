@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/model%20/onboarding_data_model%20/onboarding_data_model.dart';
+import '../../core/prefs_manager/prefs_manager.dart';
 import '../../core/routing/routes.dart';
 import '../../core/widget/onboarding_page/onboarding_page.dart';
 class OnBoardingScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 )),
       );
     }
-  void _onNext() {
+  void _onNext() async {
     int lastIndex = OnboardingDataModel.onboardingList.length - 1;
     if (currentIndex < lastIndex) {
       pageController.nextPage(
@@ -43,9 +44,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
+      await PrefsManager.saveOnboarding();
       Navigator.pushReplacementNamed(
-        context,
-        Routes.loginScreen,
+        context,Routes.homeScreen,
       );
     }
   }

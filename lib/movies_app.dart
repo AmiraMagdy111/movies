@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/core/prefs_manager/prefs_manager.dart';
 import 'package:movies/core/routing/routing_manager.dart';
 
 import 'config/theme/theming_manager.dart';
@@ -23,7 +24,9 @@ class MoviesApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
 
-        initialRoute:Routes.onboardingScreen,
+        initialRoute: PrefsManager.getOnboarding() == false
+            ? Routes.onboardingScreen
+            : Routes.homeScreen,
         onGenerateRoute: appRouter.generateRoute,
 
       ),
