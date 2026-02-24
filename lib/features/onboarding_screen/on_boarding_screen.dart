@@ -46,7 +46,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     } else {
       await PrefsManager.saveOnboarding();
       Navigator.pushReplacementNamed(
-        context,Routes.homeScreen,
+        context,Routes.loginScreen,
       );
     }
   }
