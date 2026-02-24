@@ -23,7 +23,7 @@ class MoviesApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
 
-        initialRoute:Routes.homeScreen,
+        initialRoute:Routes.registerScreen,
         onGenerateRoute: appRouter.generateRoute,
 
       ),
