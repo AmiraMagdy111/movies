@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/assets_image/app_assets.dart';
 
@@ -31,15 +32,15 @@ class _AvatarSelectorState extends State<AvatarSelector> {
             });
           },
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            padding: const EdgeInsets.all(3),
+            margin: REdgeInsets.symmetric(horizontal: 8),
+            padding: REdgeInsets.all(3),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
                 color: selectedIndex == index
                     ? Colors.orange
                     : Colors.transparent,
-                width: 3,
+                width: 3.w,
               ),
             ),
             child: CircleAvatar(

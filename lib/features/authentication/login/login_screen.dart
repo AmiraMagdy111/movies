@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
@@ -34,20 +35,20 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: ColorsManager.primaryBlack,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: REdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 67),
+                SizedBox(height: 67.h),
                 Image.asset(
                   ImageManager.logo,
-                  width: 120,
-                  height: 120,
+                  width: 120.w,
+                  height: 120.h,
                   fit: BoxFit.contain,
                 ),
-                SizedBox(height: 69),
+                SizedBox(height: 69.h),
                 CustomTextFormField(
                   controller: emailController,
                   hintText: 'Enter your email',
@@ -64,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 22),
+                SizedBox(height: 22.h),
                 CustomTextFormField(
                   controller: passwordController,
                   hintText: 'Enter your password',
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 17.3),
+                SizedBox(height: 17.3.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -101,9 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 33),
+                SizedBox(height: 33.h),
                 CustomElevatedButton(text: 'Login', onPress: () {}),
-                SizedBox(height: 22),
+                SizedBox(height: 22.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -112,7 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: StylesManager.googleFont14WhiteRegular,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context ,Routes.registerScreen);
+                      },
                       child: Text(
                         'Create One',
                         style: StylesManager.googleFont14OrangeBold,
@@ -120,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 22),
+                SizedBox(height: 22.h),
                 CustomElevatedButton(
                   text: 'Login With Google',
                   prefixIcon: Image.asset(IconsManager.googleIcon),

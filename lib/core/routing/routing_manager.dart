@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/routing/routes.dart';
-import 'package:movies/features/auth/register_screen/register_screen.dart';
-
 import '../../features/authentication/login/login_screen.dart';
+import '../../features/authentication/register_screen/register_screen.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/onboarding_screen/on_boarding_screen.dart';
 

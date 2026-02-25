@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
-import 'package:movies/features/auth/register_screen/widget/avatar_selector.dart';
-import 'package:movies/features/auth/register_screen/widget/custom_elevated_button.dart';
-import 'package:movies/features/auth/register_screen/widget/custom_text_form_field.dart';
+import 'package:movies/features/authentication/register_screen/widget/avatar_selector.dart';
+
 
 import '../../../core/theming/colors_manager.dart';
+import '../../../core/widget/custom_text_form_field.dart';
+import '../../../core/widget/custome_elevated_button.dart';
 
 
 
@@ -51,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         title: const Text("Register"),) ,
       body:SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: REdgeInsets.all(16),
           child: Form(
             key: _formKey,
             child: Column(
@@ -62,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     AvatarSelector(),
                   ],
                 ),
-                SizedBox(height: 67,),
+                SizedBox(height: 67.h),
         
                 CustomTextFormField(
                   controller: nameController,
@@ -86,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
         
-                const SizedBox(height: 22),
+                SizedBox(height: 22.h),
         
         
                 CustomTextFormField(
@@ -116,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
         
-                const SizedBox(height: 22),
+                SizedBox(height: 22.h),
         
                 CustomTextFormField(
                  controller: passController,
@@ -142,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                  //obscureText: true,
                 ),
-                SizedBox(height: 22,), 
+                SizedBox(height: 22.h),
                 CustomTextFormField(
                   controller: confirmPassController,
                   hintText: 'Confirm Password',
@@ -175,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         
                 ),
         
-                const SizedBox(height: 22),
+                SizedBox(height: 22.h),
         
         
                 CustomTextFormField(
@@ -205,7 +207,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 22),
+                SizedBox(height: 22.h),
                 CustomElevatedButton(text: 'Create Account',
                     onPress: () {
                   if(_formKey.currentState!.validate()){
@@ -229,25 +231,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ],
-        
-        
-        
                 ),
-        
-        
-        
-        
-        
-        
               ],
             ),
           ),
         ),
       ),
-
-
-
-
     );
   }
 }

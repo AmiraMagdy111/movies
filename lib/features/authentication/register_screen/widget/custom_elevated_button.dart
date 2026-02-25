@@ -35,7 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
           children: [
             if (prefixIcon != null) ...[
               prefixIcon!,
-              SizedBox(width: 8),
+              SizedBox(width: 8.w),
             ],
             Text(text, style: StylesManager.googleFont20BlackRegular),
           ],
