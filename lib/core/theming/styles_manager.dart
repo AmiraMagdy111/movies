@@ -25,6 +25,12 @@ class StylesManager {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.primaryOrange,
   );
+  static TextStyle hintTextStyle = GoogleFonts.roboto(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.white,
+  );
+
   static TextStyle description20regular = GoogleFonts.inter(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.regular,

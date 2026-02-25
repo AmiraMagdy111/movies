@@ -23,7 +23,7 @@ class ThemeManager {
       //foregroundColor: ColorsManager.primaryLight,
       //titleTextStyle: StylesManager.googleFont20LightMedium,
     ),
-    //scaffoldBackgroundColor: ColorsManager.primaryDark,
+    scaffoldBackgroundColor: ColorsManager.primaryBlack,
 textTheme: TextTheme(
   headlineSmall: StylesManager.description20regular,
   headlineMedium: StylesManager.titleMedium24Bold,
@@ -42,5 +42,6 @@ outlinedButtonTheme: OutlinedButtonThemeData(
       ),
   ),
 ),
+
   );
 }

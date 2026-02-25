@@ -4,6 +4,7 @@ import '../../features/authentication/login/login_screen.dart';
 import '../../features/authentication/register_screen/register_screen.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/onboarding_screen/on_boarding_screen.dart';
+import 'package:movies/features/authentication/reset_password/reset_password.dart';
 
 class RoutingManager {
   RoutingManager();
@@ -21,6 +22,8 @@ class RoutingManager {
         return MaterialPageRoute(
           builder: (_) => const OnBoardingScreen(),
         );
+      case Routes.resetPassword:
+        return MaterialPageRoute(builder: (_) => const ResetPassword());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
