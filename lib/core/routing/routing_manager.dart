@@ -3,6 +3,7 @@ import 'package:movies/core/routing/routes.dart';
 
 import '../../features/authentication/login/login_screen.dart';
 import '../../features/home/home_screen.dart';
+import '../../features/onboarding_screen/on_boarding_screen.dart';
 
 class RoutingManager {
   RoutingManager();
@@ -13,6 +14,10 @@ class RoutingManager {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case Routes.onboardingScreen:
+        return MaterialPageRoute(
+          builder: (_) => const OnBoardingScreen(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
