@@ -10,15 +10,13 @@ class AvatarSelector extends StatefulWidget {
 }
 
 class _AvatarSelectorState extends State<AvatarSelector> {
-
-  // صور من AppAssets
   List<String> avatars = [
     AppAssets.person_one,
     AppAssets.person_tow,
     AppAssets.person_three,
   ];
 
-  int selectedIndex = 0; // الأفاتار المختار
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +35,6 @@ class _AvatarSelectorState extends State<AvatarSelector> {
             padding: const EdgeInsets.all(3),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-
-              // إطار عند الاختيار
               border: Border.all(
                 color: selectedIndex == index
                     ? Colors.orange
@@ -48,8 +44,6 @@ class _AvatarSelectorState extends State<AvatarSelector> {
             ),
             child: CircleAvatar(
               radius: index == selectedIndex ? 32 : 26,
-
-              // صورة من assets
               backgroundImage: AssetImage(avatars[index]),
             ),
           ),

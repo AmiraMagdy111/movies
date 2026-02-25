@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies/core/assets_image/app_assets.dart';
+import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/features/auth/register_screen/widget/avatar_selector.dart';
 import 'package:movies/features/auth/register_screen/widget/custom_elevated_button.dart';
@@ -220,7 +220,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: StylesManager.googleFont14WhiteRegular,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.loginScreen);
+                      },
                       child: Text(
                         'Login',
                         style: StylesManager.googleFont14OrangeBold,
