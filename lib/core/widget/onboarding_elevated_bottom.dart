@@ -20,8 +20,8 @@ class OnboardingElevatedBottom extends StatelessWidget {
       child: ElevatedButton(
 
       style: ElevatedButton.styleFrom(
-        backgroundColor: ColorsManager.goldenYellow,
-        foregroundColor: ColorsManager.black,
+        backgroundColor: ColorsManager.primaryOrange,
+        foregroundColor: ColorsManager.primaryBlack,
         shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.r)
         )
@@ -29,7 +29,7 @@ class OnboardingElevatedBottom extends StatelessWidget {
         onPressed: onPressed,
           child: Text(text,style: GoogleFonts.inter(fontSize: 20.sp,
           fontWeight: FontWeightHelper.semiBold,
-          color: ColorsManager.black) ,),
+          color: ColorsManager.primaryBlack) ,),
       ),
     );
   }

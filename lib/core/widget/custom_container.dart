@@ -25,7 +25,7 @@ class CustomContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ColorsManager.black,
+        color: ColorsManager.primaryBlack,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(40.r),
           topRight: Radius.circular(40.r),

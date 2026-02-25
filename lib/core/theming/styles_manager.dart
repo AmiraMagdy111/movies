@@ -44,7 +44,7 @@ class StylesManager {
   static TextStyle text20 = GoogleFonts.inter(
       fontSize: 20.sp,
       fontWeight: FontWeightHelper.semiBold,
-      color: ColorsManager.black
+      color: ColorsManager.primaryBlack
   );
 
 

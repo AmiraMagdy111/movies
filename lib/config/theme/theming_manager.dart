@@ -23,9 +23,9 @@ textTheme: TextTheme(
 ),
 outlinedButtonTheme: OutlinedButtonThemeData(
   style: OutlinedButton.styleFrom(
-    foregroundColor: ColorsManager.goldenYellow,
+    foregroundColor: ColorsManager.primaryOrange,
     side: BorderSide(
-      color: ColorsManager.goldenYellow,
+      color: ColorsManager.primaryOrange,
       width: 2.w,
     ),
       shape: RoundedRectangleBorder(

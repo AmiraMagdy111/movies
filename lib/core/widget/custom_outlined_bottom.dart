@@ -18,7 +18,7 @@ class CustomOutlinedBottom extends StatelessWidget {
           onPressed: onPressed, child: Text(OnboardingTexts.back,
         style: GoogleFonts.inter(fontSize: 20.sp,
             fontWeight: FontWeight.w500,
-            color: ColorsManager.goldenYellow),
+            color: ColorsManager.primaryOrange),
       )),
 
     );
