@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(height: 33),
-                CustomElevatedButton(text: 'Login', onPress: () {}),
+                CustomElevatedButton(buttonText: 'Login',text: 'Login', onPress: () {}),
                 SizedBox(height: 22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 22),
                 CustomElevatedButton(
-                  text: 'Login With Google',
+                   buttonText: 'Login With Google',  text: 'Login With Google',
                   prefixIcon: Image.asset(IconsManager.googleIcon),
                   onPress: () {},
                 ),

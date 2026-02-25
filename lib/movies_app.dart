@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/routing/routing_manager.dart';
 import 'config/theme/theming_manager.dart';
 import 'core/routing/routes.dart';
-
 class MoviesApp extends StatelessWidget {
   final RoutingManager appRouter;
 
@@ -21,7 +20,7 @@ class MoviesApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
 
-        initialRoute:Routes.loginScreen,
+        initialRoute:Routes.updateprofile,
         onGenerateRoute: appRouter.generateRoute,
 
       ),
