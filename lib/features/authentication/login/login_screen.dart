@@ -94,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.resetPassword);
+                      },
                       child: Text(
                         'Forget Password ?',
                         style: StylesManager.googleFont14OrangeRegular,
