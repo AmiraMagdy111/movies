@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(context, Routes.resetPassword);
                       },
                       child: Text(
-                        TextManager.forgetPassword,
+                        "forget password",
                         style: StylesManager.googleFont14OrangeRegular,
                       ),
                     ),
@@ -106,14 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 33.h),
                 CustomElevatedButton(text: 'Login', onPress: () {}),
                 SizedBox(height: 22.h),
-                SizedBox(height: 33),
-                CustomElevatedButton(text: TextManager.login, onPress: () {}),
-                SizedBox(height: 22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      TextManager.dontHaveAnAccount,
+                      "Don't have an account?",
                       style: StylesManager.googleFont14WhiteRegular,
                     ),
                     TextButton(
@@ -121,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushNamed(context ,Routes.registerScreen);
                       },
                       child: Text(
-                       TextManager.createOne,
+                       "Create one",
                         style: StylesManager.googleFont14OrangeBold,
                       ),
                     ),
@@ -129,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 22.h),
                 CustomElevatedButton(
-                  text: TextManager.loginWithGoogle,
+                  text: "Login With Google",
                   prefixIcon: Image.asset(IconsManager.googleIcon),
                   onPress: () {},
                 ),

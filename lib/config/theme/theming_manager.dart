@@ -16,7 +16,7 @@ class ThemeManager {
         color: ColorsManager.primaryOrange,
         size: 22,
       ),
-      titleTextStyle:TextStyle( fontSize: 20,
+      titleTextStyle: TextStyle(fontSize: 20,
         fontWeight: FontWeightHelper.regular,
         color: ColorsManager.primaryOrange,),
 
@@ -24,24 +24,24 @@ class ThemeManager {
       //titleTextStyle: StylesManager.googleFont20LightMedium,
     ),
     scaffoldBackgroundColor: ColorsManager.primaryBlack,
-textTheme: TextTheme(
-  headlineSmall: StylesManager.description20regular,
-  headlineMedium: StylesManager.titleMedium24Bold,
-  headlineLarge: StylesManager.titleLarge36Medium,
-  titleSmall: StylesManager.text20
-),
-outlinedButtonTheme: OutlinedButtonThemeData(
-  style: OutlinedButton.styleFrom(
-    foregroundColor: ColorsManager.primaryOrange,
-    side: BorderSide(
-      color: ColorsManager.primaryOrange,
-      width: 2.w,
+    textTheme: TextTheme(
+        headlineSmall: StylesManager.description20regular,
+        headlineMedium: StylesManager.titleMedium24Bold,
+        headlineLarge: StylesManager.titleLarge36Medium,
+        titleSmall: StylesManager.text20
     ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.r),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: ColorsManager.primaryOrange,
+        side: BorderSide(
+          color: ColorsManager.primaryOrange,
+          width: 2.w,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.r),
+        ),
       ),
-  ),
-),
+    ),
 
   );
 }
