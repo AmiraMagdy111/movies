@@ -3,6 +3,8 @@ import 'package:movies/core/widget/onboarding_with_container/onboarding_with_con
 import 'package:movies/core/widget/onboarding_with_simple/onboarding_with_simple.dart';
 import 'package:movies/model%20/onboarding_data_model%20/onboarding_data_model.dart';
 
+
+
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key, required this.onboardingDataModel,
     required this.onNext,
@@ -13,7 +15,7 @@ class OnboardingPage extends StatelessWidget {
   final VoidCallback onBack;
   final int currentIndex;
 
-  final OnboardingDataModel onboardingDataModel;
+  final  OnboardingDataModel onboardingDataModel;
 
   @override
   Widget build(BuildContext context) {

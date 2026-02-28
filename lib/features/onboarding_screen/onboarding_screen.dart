@@ -3,13 +3,13 @@ import '../../core/prefs_manager/prefs_manager.dart';
 import '../../core/routing/routes.dart';
 import '../../core/widget/onboarding_page/onboarding_page.dart';
 import '../../model /onboarding_data_model /onboarding_data_model.dart';
-class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen ({super.key});
   @override
-  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+  State<OnboardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
+class _OnBoardingScreenState extends State<OnboardingScreen> {
 
   PageController pageController = PageController();
   int currentIndex = 0;
@@ -28,7 +28,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             itemCount: OnboardingDataModel.onboardingList.length,
             itemBuilder: (context, index) =>
                 OnboardingPage(
-                  onboardingDataModel: OnboardingDataModel
+                  onboardingDataModel:OnboardingDataModel
                       .onboardingList[index],
                   onNext: _onNext,
                   onBack: _onBack,

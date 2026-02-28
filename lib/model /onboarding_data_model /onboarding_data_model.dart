@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import 'package:movies/core/theming/onboarding_image/onboarding_image.dart';
 import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
-
 class OnboardingDataModel {
   final String image;
   final String title;
@@ -12,7 +11,6 @@ class OnboardingDataModel {
   final double titleSpacing;
   final double? descriptionSpacing;
   final double ? buttonSpacing;
-
   OnboardingDataModel({
     required this.image,
     required this.title,
@@ -22,9 +20,7 @@ class OnboardingDataModel {
     required this.titleSpacing,
     this.descriptionSpacing,
     this.buttonSpacing
-
   });
-
   static final List<OnboardingDataModel> onboardingList = [
     OnboardingDataModel(image: OnboardingImage.page1,
         title: OnboardingTexts.titleBadge1,
