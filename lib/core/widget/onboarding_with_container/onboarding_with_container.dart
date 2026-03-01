@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
 import 'package:movies/core/widget/custom_container.dart';
-import '../../../model /onboarding_data_model /onboarding_data_model.dart';
+import '../../../model/onboarding_model/onboarding_model.dart';
 import '../../helpers/font_weight_helper.dart';
 import '../../theming/styles_manager.dart';
 import '../onboarding_elevated_bottom.dart';
@@ -16,7 +16,7 @@ class OnboardingWithContainer extends StatelessWidget {
     required this.currentIndex
   });
 
-  final OnboardingDataModel onboardingDataModel;
+  final OnboardingModel onboardingDataModel;
   final VoidCallback onNext;
   final VoidCallback onBack;
   final int currentIndex;
@@ -33,7 +33,7 @@ class OnboardingWithContainer extends StatelessWidget {
         descriptionStyle: descriptionTextStyle(),
         descriptionSpacing: onboardingDataModel.descriptionSpacing,
         spacing: onboardingDataModel.buttonSpacing,
-        elevatedButton: OnboardingElevatedBottom(text: currentIndex == OnboardingDataModel.onboardingList.length - 1
+        elevatedButton: OnboardingElevatedBottom(text: currentIndex == OnboardingModel.onboardingList.length - 1
             ? OnboardingTexts.finish
             : OnboardingTexts.next,
           onPressed: onNext,

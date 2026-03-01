@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/prefs_manager/prefs_manager.dart';
 import '../../core/routing/routes.dart';
 import '../../core/widget/onboarding_page/onboarding_page.dart';
-import '../../model /onboarding_data_model /onboarding_data_model.dart';
+import '../../model/onboarding_model/onboarding_model.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen ({super.key});
   @override
@@ -25,10 +25,10 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
                 currentIndex = index;
               });
             },
-            itemCount: OnboardingDataModel.onboardingList.length,
+            itemCount: OnboardingModel.onboardingList.length,
             itemBuilder: (context, index) =>
                 OnboardingPage(
-                  onboardingDataModel:OnboardingDataModel
+                  onboardingDataModel:OnboardingModel
                       .onboardingList[index],
                   onNext: _onNext,
                   onBack: _onBack,
@@ -37,7 +37,7 @@ class _OnBoardingScreenState extends State<OnboardingScreen> {
       );
     }
   void _onNext() async {
-    int lastIndex = OnboardingDataModel.onboardingList.length - 1;
+    int lastIndex = OnboardingModel.onboardingList.length - 1;
     if (currentIndex < lastIndex) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 300),

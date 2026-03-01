@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/widget/onboarding_with_container/onboarding_with_container.dart';
 import 'package:movies/core/widget/onboarding_with_simple/onboarding_with_simple.dart';
-import 'package:movies/model%20/onboarding_data_model%20/onboarding_data_model.dart';
+import '../../../model/onboarding_model/onboarding_model.dart';
+
 
 
 
@@ -15,7 +16,7 @@ class OnboardingPage extends StatelessWidget {
   final VoidCallback onBack;
   final int currentIndex;
 
-  final  OnboardingDataModel onboardingDataModel;
+  final  OnboardingModel onboardingDataModel;
 
   @override
   Widget build(BuildContext context) {

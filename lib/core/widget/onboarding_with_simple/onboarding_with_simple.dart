@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/onboarding_elevated_bottom.dart';
-import 'package:movies/model%20/onboarding_data_model%20/onboarding_data_model.dart';
+import '../../../model/onboarding_model/onboarding_model.dart';
+
 
 class OnboardingWithSimple extends StatelessWidget {
-  final OnboardingDataModel onboardingDataModel;
+  final OnboardingModel onboardingDataModel;
   final VoidCallback onNext;
   final int currentIndex;
   const OnboardingWithSimple({super.key,required this.onboardingDataModel,

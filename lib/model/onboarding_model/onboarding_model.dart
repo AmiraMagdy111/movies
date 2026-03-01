@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import 'package:movies/core/theming/onboarding_image/onboarding_image.dart';
 import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
-class OnboardingDataModel {
+class OnboardingModel{
   final String image;
   final String title;
   final String ?description;
@@ -11,7 +11,7 @@ class OnboardingDataModel {
   final double titleSpacing;
   final double? descriptionSpacing;
   final double ? buttonSpacing;
-  OnboardingDataModel({
+  OnboardingModel({
     required this.image,
     required this.title,
     this.description,
@@ -21,8 +21,8 @@ class OnboardingDataModel {
     this.descriptionSpacing,
     this.buttonSpacing
   });
-  static final List<OnboardingDataModel> onboardingList = [
-    OnboardingDataModel(image: OnboardingImage.page1,
+  static final List<OnboardingModel> onboardingList = [
+    OnboardingModel(image: OnboardingImage.page1,
         title: OnboardingTexts.titleBadge1,
         description: OnboardingTexts.descriptionBadge1,
         gradient: buildGradient(
@@ -34,28 +34,28 @@ class OnboardingDataModel {
           ],
           stops: const [0.0, 0.5, 0.91, 1.0],
         ),
-         titleSpacing: 16,
-         descriptionSpacing: 24 ,
-         type: OnBoardingType.simple),
-    OnboardingDataModel(image: OnboardingImage.page2,
+        titleSpacing: 16,
+        descriptionSpacing: 24 ,
+        type: OnBoardingType.simple),
+    OnboardingModel(image: OnboardingImage.page2,
         title: OnboardingTexts.titleBadge2,
         description: OnboardingTexts.descriptionBadge2,
         gradient:buildGradient(
           colors: [
-             GradientColor.petrolBlueTransparent,
-             GradientColor.petrolBlue],
+            GradientColor.petrolBlueTransparent,
+            GradientColor.petrolBlue],
           stops: [0.0, 1.0],
         ),
         titleSpacing: 24,
         descriptionSpacing: 24,
         type: OnBoardingType.withContainer),
-    OnboardingDataModel(image: OnboardingImage.page3,
+    OnboardingModel(image: OnboardingImage.page3,
         title: OnboardingTexts.titleBadge3,
         description: OnboardingTexts.descriptionBadge3,
         gradient: buildGradient(
           colors: [
-             GradientColor.deepRedTransparent,
-             GradientColor.deepRed,
+            GradientColor.deepRedTransparent,
+            GradientColor.deepRed,
           ],
           stops: [0.0, 1.0],
         ),
@@ -63,13 +63,13 @@ class OnboardingDataModel {
         descriptionSpacing: 16,
         buttonSpacing: 16,
         type: OnBoardingType.withContainer),
-    OnboardingDataModel(image: OnboardingImage.page4,
+    OnboardingModel(image: OnboardingImage.page4,
         title: OnboardingTexts.titleBadge4,
         description: OnboardingTexts.descriptionBadge4,
         gradient: buildGradient(
           colors: [
-             GradientColor.deepPurpleTransparent,
-             GradientColor.deepPurple
+            GradientColor.deepPurpleTransparent,
+            GradientColor.deepPurple
           ],
           stops: [0.0, 1.0],
         ),
@@ -78,7 +78,7 @@ class OnboardingDataModel {
         buttonSpacing: 16,
         type: OnBoardingType.withContainer),
 
-    OnboardingDataModel(image: OnboardingImage.page5,
+    OnboardingModel(image: OnboardingImage.page5,
         title: OnboardingTexts.titleBadge5,
         description: OnboardingTexts.descriptionBadge5,
         gradient: buildGradient(
@@ -92,7 +92,7 @@ class OnboardingDataModel {
         descriptionSpacing: 27,
         buttonSpacing: 14,
         type: OnBoardingType.withContainer),
-    OnboardingDataModel(
+    OnboardingModel(
         image: OnboardingImage.page6, title: OnboardingTexts.watchingNow,
         gradient:buildGradient(
           colors: [
@@ -121,6 +121,7 @@ enum OnBoardingType {
   simple,
   withContainer,
 }
+
 
 
 
