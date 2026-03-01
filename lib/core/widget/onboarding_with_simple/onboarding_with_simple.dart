@@ -5,7 +5,6 @@ import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/onboarding_elevated_bottom.dart';
 import '../../../model/onboarding_model/onboarding_model.dart';
 
-
 class OnboardingWithSimple extends StatelessWidget {
   final OnboardingModel onboardingDataModel;
   final VoidCallback onNext;

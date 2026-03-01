@@ -15,12 +15,10 @@ class OnboardingWithContainer extends StatelessWidget {
     required this.onNext,
     required this.currentIndex
   });
-
   final OnboardingModel onboardingDataModel;
   final VoidCallback onNext;
   final VoidCallback onBack;
   final int currentIndex;
-
   @override
   Widget build(BuildContext context) {
     return Align(

@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/widget/onboarding_with_container/onboarding_with_container.dart';
 import 'package:movies/core/widget/onboarding_with_simple/onboarding_with_simple.dart';
 import '../../../model/onboarding_model/onboarding_model.dart';
-
-
-
-
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key, required this.onboardingDataModel,
     required this.onNext,
