@@ -4,7 +4,8 @@ import 'package:movies/features/profile/update_profile_ui.dart';
 
 import '../../features/authentication/login/login_screen.dart';
 import '../../features/home/home_screen.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/features/profile/update_profile_cubit.dart';
 class RoutingManager {
   RoutingManager();
 
@@ -14,8 +15,15 @@ class RoutingManager {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      //case Routes.updateprofile:
+        // return MaterialPageRoute(builder: (_)=>const UpdateProfile());
       case Routes.updateprofile:
-        return MaterialPageRoute(builder: (_)=>const UpdateProfile());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => UpdateProfileCubit()..getUserData(),
+            child: const UpdateProfile(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
