@@ -3,8 +3,11 @@ import 'package:movies/core/routing/routes.dart';
 import '../../features/authentication/login/login_screen.dart';
 import '../../features/authentication/register_screen/register_screen.dart';
 import '../../features/home/home_screen.dart';
+import '../../features/movies_details/movies_details.dart';
 import '../../features/onboarding_screen/onboarding_screen.dart';
 import 'package:movies/features/authentication/reset_password/reset_password.dart';
+
+import '../../tabs/home_tab/home_tab.dart';
 
 class RoutingManager {
   RoutingManager();
@@ -21,6 +24,13 @@ class RoutingManager {
       case Routes.onboardingScreen:
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen());
+      case Routes.homeTab:
+        return MaterialPageRoute(
+            builder: (_) => const  HomeTab());
+
+      case Routes.moviesDetails:
+        return MaterialPageRoute(
+            builder: (_) => const MoviesDetails());
 
       case Routes.resetPassword:
         return MaterialPageRoute(builder: (_) => const ResetPassword());

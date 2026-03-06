@@ -24,9 +24,10 @@ class MoviesApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
 
+
         initialRoute: PrefsManager.getOnboarding() == false
             ? Routes.onboardingScreen
-            : Routes.loginScreen,
+            : Routes.homeTab,
         onGenerateRoute: appRouter.generateRoute,
 
       ),

@@ -53,5 +53,22 @@ class StylesManager {
       color: ColorsManager.primaryBlack
   );
 
-
+  static TextStyle ratingText = GoogleFonts.roboto(
+      fontSize: 16.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorsManager.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle sectionTitle20regular = GoogleFonts.roboto(
+      fontSize: 20.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorsManager.white,
+      decoration: TextDecoration.none
+  );
+  static TextStyle sectionTitle16regular = GoogleFonts.roboto(
+      fontSize: 16.sp,
+      fontWeight: FontWeightHelper.regular,
+      color: ColorsManager.primaryOrange,
+      decoration: TextDecoration.none
+  );
 }

@@ -10,7 +10,6 @@ class ColorsManager {
   static const Color green =Color(0xFF57AA53);
   static const Color red =Color(0xFFE82626);
   static const Color white60 = Color(0x99FFFFFF);
-
 }
 class GradientColor {
   static const Color blackTransparent = Color(0x001E1E1E);

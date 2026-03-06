@@ -8,7 +8,5 @@ class ImageManager{
 
 class IconsManager{
   static const String _base = 'assets/icons/';
-
   static const String googleIcon = '${_base}google_icon.png';
-
 }

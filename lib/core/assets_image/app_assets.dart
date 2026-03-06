@@ -6,7 +6,16 @@ class AppAssets {
 }
 class IconsManager{
   static const String _base = 'assets/icons/';
-
   static const String googleIcon = '${_base}google_icon.png';
+}
+class HomeTabImage{
+  static const String _base = "assets/home_tab_image/";
+  static const String availableNow ='${_base}available_now.png';
+  static const String watchNow ='${_base}watch_now.png';
+
+}
+class SvgIconHomeTab{
+  static const String _base = "assets/svg_image/";
+  static const String arrow = '${_base}arrow.svg';
 
 }
