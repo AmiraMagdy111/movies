@@ -69,8 +69,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextFormField(
                   controller: nameController,
                   hintText: "Name",
-                  prefixIcon: Icons.person,
-        
+                  prefixIcon:  Icon(
+                    Icons.person,
+                    color: ColorsManager.white,
+                  ),
+
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Name is required";
@@ -94,7 +97,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextFormField(
                   controller: emailController,
                   hintText: "Email",
-                  prefixIcon: Icons.email,
+                  prefixIcon:  Icon(
+                    Icons.email,
+                    color: ColorsManager.white,
+                  ),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -123,7 +129,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextFormField(
                  controller: passController,
                   hintText: "Password",
-                  prefixIcon: Icons.lock,
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: ColorsManager.white,
+                  ),
                   obscureText: isPasswordObscure,
                   suffixIcon:
                   IconButton(
@@ -149,7 +158,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: confirmPassController,
                   hintText: 'Confirm Password',
                   labelText: 'Confirm Password',
-                  prefixIcon: Icons.lock_outline,
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: ColorsManager.white,
+                  ),
                   obscureText: isConfirmPasswordObscure,
         
                   suffixIcon:IconButton(
@@ -184,7 +196,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: phoneController,
                   hintText: "Phone Number",
                   labelText: 'Phone',
-                  prefixIcon: Icons.phone,
+                  prefixIcon:  Icon(
+                    Icons.phone,
+                    color: ColorsManager.white,
+                  ),
                   keyboardType: TextInputType.phone,
         
                   validator: (value) {

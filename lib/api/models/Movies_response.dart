@@ -1,4 +1,5 @@
 import 'Data.dart';
+import 'Movies.dart';
 import 'meta.dart';
 
 class MoviesResponse {
@@ -18,7 +19,7 @@ class MoviesResponse {
   String? statusMessage;
   Data? data;
   Meta? meta;
-
+  List<Movies> get movies => data?.movies ?? [];
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['status'] = status;

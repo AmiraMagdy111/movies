@@ -23,11 +23,9 @@ class MoviesApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
 
-
-
         initialRoute: PrefsManager.getOnboarding() == false
             ? Routes.onboardingScreen
-            : Routes.homeTab,
+            : Routes.mainLayout,
         onGenerateRoute: appRouter.generateRoute,
 
       ),

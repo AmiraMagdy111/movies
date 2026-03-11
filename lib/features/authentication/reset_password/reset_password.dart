@@ -5,6 +5,8 @@ import 'package:movies/core/helpers/text_manager.dart';
 import 'package:movies/core/widget/custom_text_form_field.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
 
+import '../../../core/theming/colors_manager.dart';
+
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
 
@@ -28,7 +30,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                 controller: emailController,
                 hintText: TextManager.email,
                 labelText: TextManager.enterYourEmail,
-              prefixIcon: Icons.email_outlined,
+              prefixIcon:  Icon(
+                Icons.email_outlined,
+                color: ColorsManager.white,
+              ),
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
                 if (value == null || value.isEmpty) {

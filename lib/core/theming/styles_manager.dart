@@ -10,6 +10,11 @@ class StylesManager {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.textBlack,
   );
+  static TextStyle googleFont18WhiteRegular = GoogleFonts.roboto(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.white,
+  );
   static TextStyle googleFont14WhiteRegular = GoogleFonts.roboto(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,

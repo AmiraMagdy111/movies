@@ -22,7 +22,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final String? labelText;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
   final bool obscureText;
@@ -46,7 +46,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon,color: ColorsManager.white) : null,
+        prefixIcon: prefixIcon,
         //suffixIcon: suffixIcon != null ? Icon(suffixIcon as IconData,color: ColorsManager.white) : null,
         suffixIcon: suffixIcon,
         filled: true,

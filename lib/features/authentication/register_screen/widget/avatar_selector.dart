@@ -12,9 +12,9 @@ class AvatarSelector extends StatefulWidget {
 
 class _AvatarSelectorState extends State<AvatarSelector> {
   List<String> avatars = [
-    AppAssets.person_one,
-    AppAssets.person_tow,
-    AppAssets.person_three,
+    AppAssets.personOne,
+    AppAssets.personTow,
+    AppAssets.personThree,
   ];
 
   int selectedIndex = 0;

@@ -5,6 +5,7 @@ import 'package:movies/core/helpers/text_manager.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
 import '../../../core/helpers/image_icons_svgs_helper.dart';
+import '../../../core/theming/colors_manager.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -52,7 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: emailController,
                   hintText: 'Enter your email',
                   labelText: 'Email',
-                  prefixIcon: Icons.email_outlined,
+                  prefixIcon: Icon(
+                    Icons.email_outlined,
+                    color: ColorsManager.white,
+                  ),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -69,7 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: passwordController,
                   hintText: TextManager.enterYourPassword,
                   labelText: TextManager.password,
-                  prefixIcon: Icons.lock_outline,
+                  prefixIcon:  Icon(
+                    Icons.lock_outline,
+                    color: ColorsManager.white,
+                  ),
                   obscureText: isObscure,
                   suffixIcon: IconButton(
                     icon: Icon(
