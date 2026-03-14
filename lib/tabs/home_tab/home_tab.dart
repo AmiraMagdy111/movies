@@ -5,10 +5,10 @@ import 'package:movies/api/api_service.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
 import 'package:movies/model/genre_model/genre_model.dart';
 import 'package:movies/tabs/home_tab/widgets/background_gradient.dart';
-import 'package:movies/tabs/home_tab/widgets/movie_card_list_view.dart';
+import 'package:movies/tabs/home_tab/widgets/movie_card.dart';
 import 'package:movies/tabs/home_tab/widgets/movies_carousel.dart';
 import 'package:movies/tabs/home_tab/widgets/section_header.dart';
-import '../../api/models/Movies_response.dart';
+import '../../api/models/movies_response/Movies_response.dart';
 import '../../core/routing/routes.dart';
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -90,17 +90,16 @@ class _HomeTabState extends State<HomeTab> {
                       SizedBox(height: 30.h),
                       SectionHeader(
                         title: selectedGenre,
-                        onPress: () async {
-                          await Navigator.pushNamed(
-                              context, Routes.moviesDetails);
-                          setState(() {
-                            genreIndex++;
-                            if (genreIndex >= genres.length) {
-                              genreIndex = 0;
-                            }
-                            selectedGenre = genres[genreIndex].name;
-                          });
-                        },
+                        onPress: (){},
+                          // await Navigator.pushNamed(
+                          //     context, Routes.moviesDetails);
+                         // setState(() {
+                          //  genreIndex++;
+                           // if (genreIndex >= genres.length) {
+                        //     // genreIndex = 0;
+                           // }
+                       //     selectedGenre = genres[genreIndex].name;
+                          //});
                       ),
                       SizedBox(height: 12.h),
                       SizedBox(
@@ -112,9 +111,26 @@ class _HomeTabState extends State<HomeTab> {
                           separatorBuilder: (_, __) =>
                               SizedBox(width: 16.w),
                           itemBuilder: (context, index) {
-                            return MovieCardListView(
-                              movie: filteredMovies[index],
+                            return MovieCard(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.moviesDetails,
+                                arguments: filteredMovies[index].id,
+                              );
+
+                              // setState(() {
+                              //   genreIndex++;
+                              //   if (genreIndex >= genres.length) {
+                              //     genreIndex = 0;
+                              //   }
+                              //   selectedGenre = genres[genreIndex].name;
+                              // });
+                            },
+                            width: 146.w,
+                            movie: filteredMovies[index],
                             );
+
                           },
                         ),
                       ),

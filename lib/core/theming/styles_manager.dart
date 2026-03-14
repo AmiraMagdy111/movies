@@ -71,4 +71,18 @@ class StylesManager {
       color: ColorsManager.primaryOrange,
       decoration: TextDecoration.none
   );
+  static TextStyle text24bold = GoogleFonts.roboto(
+      fontSize: 24.sp,
+      fontWeight: FontWeightHelper.bold,
+      color: ColorsManager.white,
+      decoration: TextDecoration.none
+  );
+  static TextStyle movieYear20bold = GoogleFonts.roboto(
+      fontSize: 20.sp,
+      fontWeight: FontWeightHelper.bold,
+      color: ColorsManager.grayDad,
+      decoration: TextDecoration.none
+  );
+
+
 }

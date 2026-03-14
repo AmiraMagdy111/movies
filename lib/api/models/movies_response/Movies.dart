@@ -1,5 +1,5 @@
 import 'Torrents.dart';
-
+import '../movies_details_response/cast_model.dart';
 class Movies {
   Movies({
       this.id, 
@@ -38,7 +38,7 @@ class Movies {
     titleLong = json['title_long'];
     slug = json['slug'];
     year = json['year'];
-    rating = (json['rating'] as num ?)?.toDouble();
+    rating = (json['rating'] as num?)?.toDouble();
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
     summary = json['summary'];
@@ -52,6 +52,22 @@ class Movies {
     smallCoverImage = json['small_cover_image'];
     mediumCoverImage = json['medium_cover_image'];
     largeCoverImage = json['large_cover_image'];
+    likeCount = json['like_count'];
+    images = [
+      json['background_image'],
+      json['large_cover_image'],
+      json['medium_cover_image'],
+      json['small_cover_image'],
+    ].whereType<String>().toList();
+
+
+    if (json['cast'] != null) {
+      cast = [];
+      json['cast'].forEach((v) {
+        cast?.add(CastModel.fromJson(v));
+      });
+    }
+
     state = json['state'];
     if (json['torrents'] != null) {
       torrents = [];
@@ -88,6 +104,12 @@ class Movies {
   List<Torrents>? torrents;
   String? dateUploaded;
   int? dateUploadedUnix;
+  int? likeCount;
+  List<String>? images;
+  List<CastModel>? cast;
+
+
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -30,7 +30,7 @@ class RoutingManager {
 
       case Routes.moviesDetails:
         return MaterialPageRoute(
-            builder: (_) => const MoviesDetails());
+            builder: (_) => MoviesDetails(movieId:settings.arguments as int,));
 
       case Routes.resetPassword:
         return MaterialPageRoute(builder: (_) => const ResetPassword());
