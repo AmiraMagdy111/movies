@@ -21,7 +21,7 @@ class MoviesApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
 
-        initialRoute:Routes.updateprofile,
+        initialRoute:Routes.homeScreen,
         onGenerateRoute: appRouter.generateRoute,
 
       ),

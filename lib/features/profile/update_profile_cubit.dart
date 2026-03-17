@@ -12,6 +12,8 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
   TextEditingController phoneController = TextEditingController();
   String selectedAvatar = 'assets/profileImages/image 1.png';
 
+  get userModel => null;
+
   Future<void> getUserData() async {
     emit(GetUserLoading());
     try {

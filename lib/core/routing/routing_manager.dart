@@ -12,11 +12,13 @@ class RoutingManager {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(
+         builder: (_) => BlocProvider( create: (context) => UpdateProfileCubit()..getUserData(),
+        child: const HomeScreen(),
+         ),
+        );
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-      //case Routes.updateprofile:
-        // return MaterialPageRoute(builder: (_)=>const UpdateProfile());
       case Routes.updateprofile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
