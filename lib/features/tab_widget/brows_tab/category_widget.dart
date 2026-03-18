@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/theming/colors_manager.dart';
+import 'bloc/browse_bloc.dart';
+import 'bloc/browse_state.dart';
 
 class CategoryListWidget extends StatefulWidget {
   const CategoryListWidget({super.key});
@@ -9,70 +12,83 @@ class CategoryListWidget extends StatefulWidget {
 }
 
 class _CategoryListWidgetState extends State<CategoryListWidget> {
-
-  final List<String> categories = [
-    "Action",
-    "Adventure",
-    "Animation",
-    "Drama",
-
-  ];
-
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: SizedBox(
-        height: 50,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
+    return BlocBuilder<BrowseBloc, BrowseState>(
+      builder: (context, state) {
 
-            bool isSelected = selectedIndex == index;
+        // حالة اللودينج
+        if (state is BrowseLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
 
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 6),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? ColorsManager.primaryOrange
-                      : ColorsManager.primaryBlack,
-                  borderRadius: BorderRadius.circular(20),
+        // حالة النجاح
+        if (state is BrowseSuccess) {
+          var categories = state.genres;
 
-                  border: Border.all(
-                    color: ColorsManager.primaryOrange,
-                    width: 1.5,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    categories[index],
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,decoration: TextDecoration.none,
-                      color: isSelected
-                          ? ColorsManager.primaryBlack
-                          : ColorsManager.primaryOrange,
+          return Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: SizedBox(
+              height: 50,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+
+                  bool isSelected = selectedIndex == index;
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? ColorsManager.primaryOrange
+                            : ColorsManager.primaryBlack,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
+                          color: ColorsManager.primaryOrange,
+                          width: 1.5,
+                        ),
+                      ),
+
+                      child: Center(
+                        child: Text(
+                          categories[index].name ,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.none,
+                            color: isSelected
+                                ? ColorsManager.primaryBlack
+                                : ColorsManager.primaryOrange,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
-            );
-          },
-        ),
-      ),
+            ),
+          );
+        }
+
+        // أي حالة تانية
+        return const SizedBox();
+      },
     );
   }
 }
