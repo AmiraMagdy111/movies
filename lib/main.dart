@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/prefs_manager/prefs_manager.dart';
 import 'package:movies/core/routing/routing_manager.dart';
-import 'package:movies/features/authentication/cubit/auth_cubit.dart';
-import 'package:movies/features/authentication/data_source/remote/auth_firebase_remote_data_source.dart';
-import 'package:movies/features/authentication/repositry/auth_repository_implementation.dart';
+import 'package:movies/clean_architecture/cubit/auth_cubit.dart';
 import 'package:movies/firebase_options.dart';
+import 'clean_architecture/data_source/remote/auth_firebase_remote_data_source.dart';
+import 'clean_architecture/repository/auth_repository_implementation.dart';
 import 'movies_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ void main() async {
       create: (context) => AuthCubit(authRepository:
         AuthRepositoryImplementation(
           remoteDataSource:
-          AuthFirebaseRemoteDataSource(),
+         AuthFirebaseRemoteDataSource(),
         ),
       ),
       child: MoviesApp(appRouter: RoutingManager())));

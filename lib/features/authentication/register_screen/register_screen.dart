@@ -6,16 +6,11 @@ import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/utils/ui_utils.dart';
 import 'package:movies/core/utils/utile_validator.dart';
-import 'package:movies/features/authentication/cubit/auth_cubit.dart';
 import 'package:movies/features/authentication/register_screen/widget/avatar_selector.dart';
-
-
+import '../../../clean_architecture/cubit/auth_cubit.dart';
 import '../../../core/theming/colors_manager.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 import '../../../core/widget/custome_elevated_button.dart';
-
-
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 

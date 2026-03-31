@@ -1,5 +1,6 @@
-import 'package:movies/features/authentication/repositry/auth_repository.dart';
+
 import '../data_source/remote/auth_remote_data_source.dart';
+import 'auth_repository.dart';
 class AuthRepositoryImplementation implements AuthRepository{
   final AuthRemoteDataSource remoteDataSource;
   AuthRepositoryImplementation({required this.remoteDataSource});

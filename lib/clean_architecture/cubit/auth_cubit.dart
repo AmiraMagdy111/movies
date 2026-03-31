@@ -1,7 +1,9 @@
 
 
+
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/features/authentication/repositry/auth_repository.dart';
+import '../repository/auth_repository.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit( {required this.authRepository}) :super(AuthInitial());
