@@ -24,6 +24,9 @@ class Validator {
     if (!emailRegex.hasMatch(email)) {
       return "Enter a valid email address";
     }
+    if (!email.contains('@')) {
+      return 'Enter a valid email';
+    }
     return null;
   }
   static String? validatePassword(String? password) {

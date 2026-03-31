@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/helpers/text_manager.dart';
 import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/utils/ui_utils.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
+import '../../../clean_architecture/cubit/auth_cubit.dart';
 import '../../../core/helpers/image_icons_svgs_helper.dart';
 import '../../../core/theming/colors_manager.dart';
+import '../../../core/utils/utile_validator.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -58,15 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: ColorsManager.white,
                   ),
                   keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email is required';
-                    }
-                    if (!value.contains('@')) {
-                      return 'Enter a valid email';
-                    }
-                    return null;
-                  },
+                  validator: Validator.validateEmail
+                    /// Amira implemented validator,i just split it in widget
                 ),
                 SizedBox(height: 22.h),
                 CustomTextFormField(
@@ -88,12 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                   ),
-                  validator: (value) {
-                    if (value == null || value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
+                  validator: Validator.validatePassword
+                  /// Amira implemented validator,i just split it in widget
                 ),
                 SizedBox(height: 17.3.h),
                 Row(
@@ -111,7 +104,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 SizedBox(height: 33.h),
-                CustomElevatedButton(text: 'Login', onPress: () {}),
+                BlocListener<AuthCubit,AuthState>(
+                  listener: (context,state){
+                    if(state is LoginLoading){
+                      UIUtils.showLoading(context);
+                    }else if (state is LoginError){
+                      UIUtils.hideDialog(context);
+                      UIUtils.showToastMessage(message: state.message,
+                          bgColor: ColorsManager.red, fgColor:ColorsManager.white);
+                    }else if(state is LoginSuccess){
+                      UIUtils.hideDialog(context);
+                      UIUtils.showToastMessage(message: "user Logged Successfully",
+                          bgColor: Colors.green, fgColor: ColorsManager.white);
+                    }
+                    Navigator.pushReplacementNamed(context, Routes.homeScreen);
+                  },
+                    child: CustomElevatedButton(text: 'Login', onPress:_login)),
                 SizedBox(height: 22.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -143,5 +151,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _login() {
+    if (_formKey.currentState!.validate() == false) return;
+    BlocProvider.of<AuthCubit>(context).login(email: emailController.text, password: passwordController.text);
+
   }
 }
