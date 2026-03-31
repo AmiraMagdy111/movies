@@ -25,7 +25,7 @@ class MoviesApp extends StatelessWidget {
 
         initialRoute: PrefsManager.getOnboarding() == false
             ? Routes.onboardingScreen
-            : Routes.mainLayout,
+            : Routes.registerScreen,
         onGenerateRoute: appRouter.generateRoute,
 
       ),

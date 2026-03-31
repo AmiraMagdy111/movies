@@ -1,7 +1,12 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/utils/ui_utils.dart';
+import 'package:movies/core/utils/utile_validator.dart';
+import 'package:movies/features/authentication/cubit/auth_cubit.dart';
 import 'package:movies/features/authentication/register_screen/widget/avatar_selector.dart';
 
 
@@ -19,15 +24,16 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey =GlobalKey<FormState>();
-  final nameController= TextEditingController();
-  final emailController= TextEditingController();
-  final passController= TextEditingController();
-  final confirmPassController= TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  final confirmPassController = TextEditingController();
 
-  final phoneController= TextEditingController();
+  final phoneController = TextEditingController();
   bool isPasswordObscure = true;
   bool isConfirmPasswordObscure = true;
+
   @override
   void dispose() {
     nameController.dispose();
@@ -37,21 +43,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     phoneController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsManager.primaryBlack,
-
-      appBar:AppBar(
+      appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: const Text("Register"),) ,
-      body:SingleChildScrollView(
+        title: const Text("Register"),),
+      body: SingleChildScrollView(
         child: Padding(
           padding: REdgeInsets.all(16),
           child: Form(
@@ -59,100 +63,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center ,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AvatarSelector(),
                   ],
                 ),
                 SizedBox(height: 67.h),
-        
                 CustomTextFormField(
                   controller: nameController,
                   hintText: "Name",
-                  prefixIcon:  Icon(
+                  prefixIcon: Icon(
                     Icons.person,
                     color: ColorsManager.white,
                   ),
-
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Name is required";
-                    }
-        
-                    if (value.length < 3) {
-                      return "Name must be at least 3 characters";
-                    }
-        
-                    if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value)) {
-                      return "Name must contain letters only";
-                    }
-        
-                    return null;
-                  },
+                  validator: Validator.validateName
+                  /// taha impelement validator i just sperate it in widget
                 ),
-        
                 SizedBox(height: 22.h),
-        
-        
                 CustomTextFormField(
                   controller: emailController,
                   hintText: "Email",
-                  prefixIcon:  Icon(
+                  prefixIcon: Icon(
                     Icons.email,
                     color: ColorsManager.white,
                   ),
                   keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Email is required";
-                    }
-        
-        
-                    if (value.contains(' ')) {
-                      return "Email must not contain spaces";
-                    }
-        
-        
-                    final emailRegex =
-                    RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-        
-                    if (!emailRegex.hasMatch(value)) {
-                      return "Enter a valid email address";
-                    }
-        
-                    return null;
-                  },
+                  validator: Validator.validateEmail
+                    /// taha impelement validator i just sperate it in widget
                 ),
-        
                 SizedBox(height: 22.h),
-        
-                CustomTextFormField(
-                 controller: passController,
-                  hintText: "Password",
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: ColorsManager.white,
-                  ),
-                  obscureText: isPasswordObscure,
-                  suffixIcon:
-                  IconButton(
-                    icon: Icon(
-                      isPasswordObscure ? Icons.visibility_off : Icons.visibility,
+                    CustomTextFormField(
+                    controller: passController,
+                    hintText: "Password",
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: ColorsManager.white,
                     ),
-                    onPressed: () {
-                      setState(() {
-                        isPasswordObscure = !isPasswordObscure;
-                      });
-                    },
+                    obscureText: isPasswordObscure,
+                    suffixIcon:
+                    IconButton(
+                      icon: Icon(
+                        isPasswordObscure ? Icons.visibility_off : Icons
+                            .visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isPasswordObscure = !isPasswordObscure;
+                        });
+                      },
+                    ),
+                    validator: Validator.validatePassword
+                      /// taha impelement validator i just sperate it in widget
+                    //obscureText: true,
                   ),
-                  validator: (value) {
-                    if (value == null || value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                 //obscureText: true,
-                ),
                 SizedBox(height: 22.h),
                 CustomTextFormField(
                   controller: confirmPassController,
@@ -163,10 +126,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     color: ColorsManager.white,
                   ),
                   obscureText: isConfirmPasswordObscure,
-        
-                  suffixIcon:IconButton(
+                  suffixIcon: IconButton(
                     icon: Icon(
-                      isConfirmPasswordObscure ? Icons.visibility_off : Icons.visibility,
+                      isConfirmPasswordObscure ? Icons.visibility_off : Icons
+                          .visibility,
                     ),
                     onPressed: () {
                       setState(() {
@@ -174,61 +137,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       });
                     },
                   ),
-        
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please confirm your password";
-                    }
-        
-                    if (value != passController.text) {
-                      return "Passwords do not match";
-                    }
-        
-                    return null;
-                  },
-        
+                  validator: (password){
+                    return Validator.validateConfrimPassword(password,passController.text);
+                  }
+                  /// taha impelement validator i just sperate it in widget
                 ),
-        
                 SizedBox(height: 22.h),
-        
-        
                 CustomTextFormField(
                   controller: phoneController,
                   hintText: "Phone Number",
                   labelText: 'Phone',
-                  prefixIcon:  Icon(
+                  prefixIcon: Icon(
                     Icons.phone,
                     color: ColorsManager.white,
                   ),
                   keyboardType: TextInputType.phone,
-        
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Phone number is required";
                     }
-        
                     final phone = value.trim();
-        
-        
                     if (!RegExp(r'^[0-9]+$').hasMatch(phone)) {
                       return "Phone must contain numbers only";
                     }
-        
-        
                     if (!RegExp(r'^01[0-2,5][0-9]{8}$').hasMatch(value)) {
                       return "Enter a valid Egyptian phone number";
                     }
-        
                     return null;
                   },
                 ),
                 SizedBox(height: 22.h),
-                CustomElevatedButton(text: 'Create Account',
-                    onPress: () {
-                  if(_formKey.currentState!.validate()){
-                    print('Form is Valid');
-                  }
-                    }),
+                BlocListener<AuthCubit,AuthState>(
+                    listener: (context,state) {
+                      if (state is RegisterLoading) {
+                        UIUtils.showLoading(context);
+                      }
+                      if (state is RegisterError) {
+                        UIUtils.hideDialog(context);
+                        UIUtils.showToastMessage(message: state.message,
+                            bgColor: Colors.red,
+                            fgColor: ColorsManager.white);
+                      }
+                      if (state is RegisterSuccess) {
+                        UIUtils.hideDialog(context);
+                        UIUtils.showToastMessage(
+                            message: "User Registered Successfully",
+                            bgColor: Colors.green,
+                            fgColor: ColorsManager.white);
+                      }
+                    },
+                  child: CustomElevatedButton(text: 'Create Account',
+                      onPress: _createAccount
+                    // if(_formKey.currentState!.validate()){
+                    //   print('Form is Valid');
+                    // }
+                    //   }),
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -253,5 +218,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  void _createAccount() async {
+      if (_formKey.currentState!.validate() == false) return;
+      BlocProvider.of<AuthCubit>(context).register(email: emailController.text, password: passController.text);
+    //   try {
+    //     UIUtils.showLoading(context, dismissible: false);
+    //     UserCredential userCredential = await FirebaseAuth.instance
+    //         .createUserWithEmailAndPassword(
+    //         email: emailController.text, password: passController.text
+    //     );
+    //     UIUtils.hideDialog(context);
+    //     UIUtils.showToastMessage(
+    //         message: "User Created Successfully", bgColor: Colors.green,
+    //         fgColor: ColorsManager.white);
+    //   } on FirebaseAuthException catch (exception) {
+    //     UIUtils.hideDialog(context);
+    //     if (exception.code == 'weak-password') {
+    //       UIUtils.showToastMessage(message: 'The password provided is too weak.',
+    //           bgColor: Colors.red,
+    //           fgColor: Colors.white);
+    //     } else if (exception.code == 'email-already-in-use') {
+    //       UIUtils.showToastMessage(
+    //           message: 'The account already exists for that email.',
+    //           bgColor: Colors.red,
+    //           fgColor: Colors.white);
+    //     }
+    //   } catch (exception) {
+    //     throw(exception.toString());
+    //   }
+    // }
+    // }
   }
 }
