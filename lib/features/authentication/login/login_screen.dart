@@ -11,14 +11,11 @@ import '../../../core/helpers/image_icons_svgs_helper.dart';
 import '../../../core/theming/colors_manager.dart';
 import '../../../core/utils/utile_validator.dart';
 import '../../../core/widget/custom_text_form_field.dart';
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
@@ -116,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       UIUtils.hideDialog(context);
                       UIUtils.showToastMessage(message: "user Logged Successfully",
                           bgColor: Colors.green, fgColor: ColorsManager.white);
+                      Navigator.pushReplacementNamed(context, Routes.homeScreen);
                     }
-                    Navigator.pushReplacementNamed(context, Routes.homeScreen);
                   },
                     child: CustomElevatedButton(text: 'Login', onPress:_login)),
                 SizedBox(height: 22.h),
@@ -152,10 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
   void _login() {
     if (_formKey.currentState!.validate() == false) return;
     BlocProvider.of<AuthCubit>(context).login(email: emailController.text, password: passwordController.text);
-
   }
 }

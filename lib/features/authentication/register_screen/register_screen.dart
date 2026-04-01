@@ -147,33 +147,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     color: ColorsManager.white,
                   ),
                   keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Phone number is required";
-                    }
-                    final phone = value.trim();
-                    if (!RegExp(r'^[0-9]+$').hasMatch(phone)) {
-                      return "Phone must contain numbers only";
-                    }
-                    if (!RegExp(r'^01[0-2,5][0-9]{8}$').hasMatch(value)) {
-                      return "Enter a valid Egyptian phone number";
-                    }
-                    return null;
-                  },
+                  validator: Validator.validatePhone
                 ),
                 SizedBox(height: 22.h),
                 BlocListener<AuthCubit,AuthState>(
                     listener: (context,state) {
                       if (state is RegisterLoading) {
                         UIUtils.showLoading(context);
-                      }
-                      if (state is RegisterError) {
+                      } else if (state is RegisterError) {
                         UIUtils.hideDialog(context);
                         UIUtils.showToastMessage(message: state.message,
                             bgColor: Colors.red,
                             fgColor: ColorsManager.white);
-                      }
-                      if (state is RegisterSuccess) {
+                      }else if (state is RegisterSuccess) {
                         UIUtils.hideDialog(context);
                         UIUtils.showToastMessage(
                             message: "User Registered Successfully",
