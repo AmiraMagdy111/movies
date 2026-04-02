@@ -27,7 +27,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       listener: (context,state){
         if(state is ResetPasswordLoading){
           UIUtils.showLoading(context);
-        }else if (state is ResetPasswordError){
+        }else if (state is AuthError){
           UIUtils.hideDialog(context);
           UIUtils.showToastMessage(message: state.message,
               bgColor: Colors.red,
@@ -76,7 +76,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   }
 
   void _verifyEmail() {
-    if (_formKey.currentState!.validate() == false) return;
+    if (!_formKey.currentState!.validate()) return;
     BlocProvider.of<AuthCubit>(context).resetPassword(email: emailController.text);
   }
 }

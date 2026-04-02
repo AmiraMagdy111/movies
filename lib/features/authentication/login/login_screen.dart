@@ -18,10 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
   bool isObscure = true;
 
   @override
@@ -33,116 +31,125 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: REdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: 67.h),
-                Image.asset(
-                  ImageManager.logo,
-                  width: 120.w,
-                  height: 120.h,
-                  fit: BoxFit.contain,
-                ),
-                SizedBox(height: 69.h),
-                CustomTextFormField(
-                  controller: emailController,
-                  hintText: 'Enter your email',
-                  labelText: 'Email',
-                  prefixIcon: Icon(
-                    Icons.email_outlined,
-                    color: ColorsManager.white,
+    return BlocListener<AuthCubit,AuthState>(
+      listener: (context,state){
+        if (state is LoginLoading || state is GoogleSignInLoading) {
+          UIUtils.showLoading(context);
+        }
+        else if (state is AuthError) {
+          UIUtils.hideDialog(context);
+          UIUtils.showToastMessage(
+            message: state.message,
+            bgColor: ColorsManager.red,
+            fgColor: ColorsManager.white,
+          );
+        }
+        else if (state is LoginSuccess || state is GoogleSignInSuccess) {
+          UIUtils.hideDialog(context);
+          UIUtils.showToastMessage(
+            message: "User Logged Successfully",
+            bgColor: Colors.green,
+            fgColor: ColorsManager.white,
+          );
+          Navigator.pushReplacementNamed(context, Routes.mainLayout);
+        }
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: REdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(height: 67.h),
+                  Image.asset(
+                    ImageManager.logo,
+                    width: 120.w,
+                    height: 120.h,
+                    fit: BoxFit.contain,
                   ),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: Validator.validateEmail
+                  SizedBox(height: 69.h),
+                  CustomTextFormField(
+                    controller: emailController,
+                    hintText: 'Enter your email',
+                    labelText: 'Email',
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: ColorsManager.white,
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: Validator.validateEmail
+                      /// Amira implemented validator,i just split it in widget
+                  ),
+                  SizedBox(height: 22.h),
+                  CustomTextFormField(
+                    controller: passwordController,
+                    hintText: TextManager.enterYourPassword,
+                    labelText: TextManager.password,
+                    prefixIcon:  Icon(
+                      Icons.lock_outline,
+                      color: ColorsManager.white,
+                    ),
+                    obscureText: isObscure,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isObscure ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                    ),
+                    validator: Validator.validatePassword
                     /// Amira implemented validator,i just split it in widget
-                ),
-                SizedBox(height: 22.h),
-                CustomTextFormField(
-                  controller: passwordController,
-                  hintText: TextManager.enterYourPassword,
-                  labelText: TextManager.password,
-                  prefixIcon:  Icon(
-                    Icons.lock_outline,
-                    color: ColorsManager.white,
                   ),
-                  obscureText: isObscure,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      isObscure ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    },
+                  SizedBox(height: 17.3.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.resetPassword);
+                        },
+                        child: Text(
+                          "forget password",
+                          style: StylesManager.googleFont14OrangeRegular,
+                        ),
+                      ),
+                    ],
                   ),
-                  validator: Validator.validatePassword
-                  /// Amira implemented validator,i just split it in widget
-                ),
-                SizedBox(height: 17.3.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.resetPassword);
-                      },
-                      child: Text(
-                        "forget password",
-                        style: StylesManager.googleFont14OrangeRegular,
+                  SizedBox(height: 33.h),
+                CustomElevatedButton(text: 'Login', onPress:_login),
+                  SizedBox(height: 22.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        style: StylesManager.googleFont14WhiteRegular,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 33.h),
-                BlocListener<AuthCubit,AuthState>(
-                  listener: (context,state){
-                    if(state is LoginLoading){
-                      UIUtils.showLoading(context);
-                    }else if (state is LoginError){
-                      UIUtils.hideDialog(context);
-                      UIUtils.showToastMessage(message: state.message,
-                          bgColor: ColorsManager.red, fgColor:ColorsManager.white);
-                    }else if(state is LoginSuccess){
-                      UIUtils.hideDialog(context);
-                      UIUtils.showToastMessage(message: "user Logged Successfully",
-                          bgColor: Colors.green, fgColor: ColorsManager.white);
-                      Navigator.pushReplacementNamed(context, Routes.homeScreen);
-                    }
-                  },
-                    child: CustomElevatedButton(text: 'Login', onPress:_login)),
-                SizedBox(height: 22.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have an account?",
-                      style: StylesManager.googleFont14WhiteRegular,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context ,Routes.registerScreen);
-                      },
-                      child: Text(
-                       "Create one",
-                        style: StylesManager.googleFont14OrangeBold,
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context ,Routes.registerScreen);
+                        },
+                        child: Text(
+                         "Create one",
+                          style: StylesManager.googleFont14OrangeBold,
+                        ),
                       ),
+                    ],
+                  ),
+                  SizedBox(height: 22.h),
+                     CustomElevatedButton(
+                      text: "Login With Google",
+                      prefixIcon: Image.asset(IconsManager.googleIcon),
+                      onPress: _signWithGoogle,
                     ),
-                  ],
-                ),
-                SizedBox(height: 22.h),
-                CustomElevatedButton(
-                  text: "Login With Google",
-                  prefixIcon: Image.asset(IconsManager.googleIcon),
-                  onPress: () {},
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -150,7 +157,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
   void _login() {
-    if (_formKey.currentState!.validate() == false) return;
+    if (!_formKey.currentState!.validate()) return;
     BlocProvider.of<AuthCubit>(context).login(email: emailController.text, password: passwordController.text);
+  }
+
+  void _signWithGoogle() {
+    BlocProvider.of<AuthCubit>(context).signInWithGoogle();
   }
 }

@@ -16,7 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(RegisterSuccess());
     } catch (exception) {
-      emit(RegisterError(message: exception.toString()));
+      emit(AuthError(exception.toString()));
     }
   }
 
@@ -29,9 +29,10 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(LoginSuccess());
     } catch (exception) {
-      emit(LoginError(message: exception.toString()));
+      emit(AuthError(exception.toString()));
     }
   }
+
 
   Future<void> resetPassword({required String email}) async {
     emit(ResetPasswordLoading());
@@ -39,32 +40,37 @@ class AuthCubit extends Cubit<AuthState> {
       await authRepository.resetPassword(email: email);
       emit(ResetPasswordSuccess());
     } catch (exception) {
-      emit(ResetPasswordError(message: exception.toString()));
+      emit(AuthError(exception.toString()));
+    }
+  }
+  Future<void> signInWithGoogle() async {
+    emit(GoogleSignInLoading());
+    try {
+      await authRepository.signInWithGoogle();
+      emit(GoogleSignInSuccess());
+    } catch (exception) {
+      emit(AuthError(exception.toString()));
     }
   }
 }
 
 abstract class AuthState {}
+
 class AuthInitial extends AuthState {}
 
 class RegisterLoading extends AuthState {}
 class RegisterSuccess extends AuthState {}
-class RegisterError extends AuthState {
-  final String message;
-  RegisterError({required this.message});
-}
 
 class LoginLoading extends AuthState {}
 class LoginSuccess extends AuthState {}
-class LoginError extends AuthState {
-  final String message;
-  LoginError({required this.message});
-}
-class ResetPasswordLoading extends AuthState {}
 
+class ResetPasswordLoading extends AuthState {}
 class ResetPasswordSuccess extends AuthState {}
 
-class ResetPasswordError extends AuthState {
+class GoogleSignInLoading extends AuthState {}
+class GoogleSignInSuccess extends AuthState {}
+
+class AuthError extends AuthState {
   final String message;
-  ResetPasswordError({required this.message});
+  AuthError(this.message);
 }

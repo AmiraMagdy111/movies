@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/api/api_service.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
+import 'package:movies/core/theming/onboarding_image/onboarding_image.dart';
 import 'package:movies/model/genre_model/genre_model.dart';
 import 'package:movies/tabs/home_tab/widgets/background_gradient.dart';
 import 'package:movies/tabs/home_tab/widgets/movie_card_list_view.dart';
@@ -27,17 +28,15 @@ class _HomeTabState extends State<HomeTab> {
     moviesFuture = ApiService.getLatestMovies();
     selectedGenre = genres[genreIndex].name;
   }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<MoviesResponse>(
       future: moviesFuture,
-      builder: (context, snapshot) {
 
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-
         if (snapshot.hasError) {
           return Center(child: Text(snapshot.error.toString()));
         }
@@ -55,7 +54,7 @@ class _HomeTabState extends State<HomeTab> {
             Positioned.fill(
               child: movies.isNotEmpty
                   ? Image.network(
-                movies[currentIndex].largeCoverImage ?? "",
+                movies[currentIndex].largeCoverImage ?? OnboardingImage.page1,
                 fit: BoxFit.cover,
               )
                   : const SizedBox(),

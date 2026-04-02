@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import '../core/assets_image/app_assets.dart';
 import '../tabs/home_tab/home_tab.dart';
-import 'home_tab/search_tab.dart';
+import 'search_tab/search_tab.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -17,6 +17,7 @@ class _MainLayoutState extends State<MainLayout> {
   final List<Widget> tabs = [
     HomeTab(),
     SearchTab(),
+
 
   ];
 

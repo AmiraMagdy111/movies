@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     color: ColorsManager.white,
                   ),
                   validator: Validator.validateName
-                  /// taha impelement validator i just sperate it in widget
+                  ///  taha implemented validator,i just split it in widget
                 ),
                 SizedBox(height: 22.h),
                 CustomTextFormField(
@@ -84,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   keyboardType: TextInputType.emailAddress,
                   validator: Validator.validateEmail
-                    /// taha impelement validator i just sperate it in widget
+                   /// taha implemented validator,i just split it in widget
                 ),
                 SizedBox(height: 22.h),
                     CustomTextFormField(
@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
                     validator: Validator.validatePassword
-                      /// taha impelement validator i just sperate it in widget
+                       /// taha implemented validator,i just split it in widget
                     //obscureText: true,
                   ),
                 SizedBox(height: 22.h),
@@ -135,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   validator: (password){
                     return Validator.validateConfrimPassword(password,passController.text);
                   }
-                  /// taha impelement validator i just sperate it in widget
+                  /// taha implemented validator,i just split it in widget
                 ),
                 SizedBox(height: 22.h),
                 CustomTextFormField(
@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     listener: (context,state) {
                       if (state is RegisterLoading) {
                         UIUtils.showLoading(context);
-                      } else if (state is RegisterError) {
+                      } else if (state is AuthError) {
                         UIUtils.hideDialog(context);
                         UIUtils.showToastMessage(message: state.message,
                             bgColor: Colors.red,
