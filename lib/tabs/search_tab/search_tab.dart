@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
+import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/widget/custom_text_form_field.dart';
-import 'package:movies/tabs/home_tab/widgets/movie_card_list_view.dart';
+import 'package:movies/tabs/home_tab/widgets/movie_card.dart';
 import '../../api/api_service.dart';
-import '../../api/models/Movies.dart';
+import '../../api/models/movies_response/Movies.dart';
 
 class SearchTab extends StatefulWidget {
   SearchTab({super.key});
@@ -132,7 +133,15 @@ class _SearchTabState extends State<SearchTab> {
           childAspectRatio: 0.65,
         ),
         itemBuilder: (context, index) {
-          return MovieCardListView(movie: movies[index]);
+          return InkWell(
+              onTap: (){
+                Navigator.pushNamed(
+                  context,
+                  Routes.moviesDetails,
+                  arguments: movies[index].id,
+                );
+              },
+              child: MovieCard(movie: movies[index]));
         },
       );
     }

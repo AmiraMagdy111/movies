@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:movies/api/models/movie_suggestions_pesponse/Movie_suggestions_response.dart';
 import 'package:movies/api/models/movies_details_response/movies_details_response.dart';
+import 'models/movies_response/Movies.dart';
 import 'models/movies_response/Movies_response.dart';
-import 'models/Movies.dart';
 class ApiService {
   static const String baseUrl = "movies-api.accel.li";
   static const String moviesEndPoint = "/api/v2/list_movies.json";
@@ -59,6 +59,7 @@ class ApiService {
       throw Exception("Error loading similar movies");
     }
   }
+
   static Future<List<Movies>> searchMovies(String query) async {
     Uri url = Uri.https(baseUrl, moviesEndPoint, {
       "query_term": query,
