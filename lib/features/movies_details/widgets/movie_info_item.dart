@@ -6,23 +6,24 @@ import 'package:movies/core/theming/colors_manager.dart';
 
 class MovieInfoItem extends StatelessWidget {
    final String text;
-  final IconData icon ;
-  const MovieInfoItem({super.key,required this.text,required this.icon});
+  final IconData? icon ;
+  const MovieInfoItem({super.key,required this.text,this.icon,});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width:  double.infinity,
       height: 47.h,
       decoration: BoxDecoration(
         color: ColorsManager.secondaryGrey,
-        borderRadius: BorderRadius.circular(16.r)
+        borderRadius: BorderRadius.circular( 16.r),
       ),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(icon,color: ColorsManager.secondaryOrange,),
-            SizedBox(width: 14.w,),
+            SizedBox(width:  14.w),
             Text(text,style: GoogleFonts.roboto(
               fontSize: 24.sp,fontWeight: FontWeightHelper.bold,
               color: ColorsManager.white,decoration:TextDecoration.none

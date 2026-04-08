@@ -3,13 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/routing/routes.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/features/authentication/register_screen/widget/avatar_selector.dart';
-
-
 import '../../../core/theming/colors_manager.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 import '../../../core/widget/custome_elevated_button.dart';
-
-
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

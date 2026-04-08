@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/core/theming/colors_manager.dart';
 import '../../../core/helpers/font_weight_helper.dart';
 class CustomFilledButton extends StatelessWidget {
-  const CustomFilledButton({super.key});
+  VoidCallback onPressed;
+   CustomFilledButton({super.key,required this.onPressed});
+
   @override
   Widget build(BuildContext context) {
     return FilledButton(
@@ -18,6 +20,6 @@ class CustomFilledButton extends StatelessWidget {
           borderRadius:BorderRadius.circular(15.r)
         )
       ),
-        onPressed: (){}, child: Text("Watch",));
+        onPressed: onPressed, child: Text("Watch",));
   }
 }

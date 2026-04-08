@@ -51,18 +51,10 @@ class ApiService {
     });
 
     try {
-      print("URL: $url");
-
       http.Response response = await http.get(url);
-
-      print("Status Code: ${response.statusCode}");
-      print("Body: ${response.body}");
-
       var json = jsonDecode(response.body);
       return MovieSuggestionsResponse.fromJson(json);
-
     } catch (e) {
-      print("ERROR: $e");
       throw Exception("Error loading similar movies");
     }
   }

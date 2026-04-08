@@ -54,7 +54,6 @@ class Movies {
     largeCoverImage = json['large_cover_image'];
     likeCount = json['like_count'];
     images = [
-      json['background_image'],
       json['large_cover_image'],
       json['medium_cover_image'],
       json['small_cover_image'],
