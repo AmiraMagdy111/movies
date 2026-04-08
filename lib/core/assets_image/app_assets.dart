@@ -26,5 +26,7 @@ class HomeTabImage{
 class SvgIconHomeTab{
   static const String _base = "assets/svg_image/";
   static const String arrow = '${_base}arrow.svg';
+  static const String play = '${_base}play.svg';
+
 
 }
