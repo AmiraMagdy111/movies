@@ -7,7 +7,6 @@ import 'package:movies/models/user_model.dart';
 
 class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
   UpdateProfileCubit() : super(UpdateProfileInitial());
-
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   String selectedAvatar = 'assets/profileImages/image 1.png';
@@ -22,7 +21,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
 
       if (document.exists) {
         UserModel user = UserModel.fromJson(document.data()!);
-
         nameController.text = user.name ?? '';
         phoneController.text = user.phone ?? '';
         selectedAvatar = user.profileImage ?? 'assets/profileImages/image 1.png';
@@ -35,7 +33,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
       emit(UpdateProfileError(e.toString()));
     }
   }
-
   Future<void> updateProfile() async {
     emit(UpdateProfileLoading());
     try {

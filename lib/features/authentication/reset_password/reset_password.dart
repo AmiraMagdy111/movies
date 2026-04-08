@@ -66,7 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   validator: Validator.validateEmail
                 ),
                 SizedBox(height: 24.h,),
-              CustomElevatedButton(text: TextManager.verifyEmail, onPress:_verifyEmail),
+              CustomElevatedButton(text: TextManager.verifyEmail, onPress:_verifyEmail,buttonText: "",),
               ],
             ),
           ),

@@ -8,9 +8,7 @@ import 'core/routing/routes.dart';
 
 class MoviesApp extends StatelessWidget {
   final RoutingManager appRouter;
-
   const MoviesApp({super.key, required this.appRouter});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -22,14 +20,12 @@ class MoviesApp extends StatelessWidget {
         darkTheme: ThemeManager.dark,
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
-
         initialRoute: PrefsManager.getOnboarding() == false
             ? Routes.onboardingScreen
             : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
 
       ),
-
     );
   }
 }

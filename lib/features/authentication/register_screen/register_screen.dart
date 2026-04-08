@@ -167,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fgColor: ColorsManager.white);
                       }
                     },
-                  child: CustomElevatedButton(text: 'Create Account',
+                  child: CustomElevatedButton(text: 'Create Account',buttonText: "",
                       onPress: _createAccount
                     // if(_formKey.currentState!.validate()){
                     //   print('Form is Valid');

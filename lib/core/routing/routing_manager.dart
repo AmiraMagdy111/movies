@@ -11,23 +11,32 @@ import 'package:movies/features/authentication/reset_password/reset_password.dar
 
 import '../../tabs/home_tab/home_tab.dart';
 
-import '../../features/home/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/features/profile/update_profile_cubit.dart';
 class RoutingManager {
   RoutingManager();
-
   Route generateRoute(RouteSettings settings) {
 
-    switch (settings.name) {
-      case Routes.homeScreen:
-        return MaterialPageRoute(
-         builder: (_) => BlocProvider( create: (context) => UpdateProfileCubit()..getUserData(),
-        child: const HomeScreen(),
-         ),
-        );
+     switch (settings.name) {
+    //   case Routes.homeScreen:
+    //     return MaterialPageRoute(
+    //      builder: (_) => BlocProvider( create: (context) => UpdateProfileCubit()..getUserData(),
+    //     child: const HomeScreen(),
+    //      ),
+    //     );
+       case Routes.onboardingScreen:
+         return MaterialPageRoute(
+             builder: (_) => const OnboardingScreen());
+
+      case  Routes.registerScreen:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+
+       case Routes.resetPassword:
+         return MaterialPageRoute(builder: (_) => const ResetPassword());
+
       case Routes.updateprofile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -35,32 +44,27 @@ class RoutingManager {
             child: const UpdateProfile(),
           ),
         );
-      case  Routes.registerScreen:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
-      case Routes.onboardingScreen:
-        return MaterialPageRoute(
 
-          builder: (_) => const OnboardingScreen());
+       case Routes.mainLayout:
+         return MaterialPageRoute(
+           builder: (_) => BlocProvider(
+             create: (context) => UpdateProfileCubit()..getUserData(),
+             child: const MainLayout(),
+           ),
+         );
+
+       // case Routes.mainLayout:
+       //   return MaterialPageRoute(
+       //       builder: (_) => const  MainLayout());
+
       case Routes.homeTab:
         return MaterialPageRoute(
             builder: (_) => const  HomeTab());
-      case Routes.mainLayout:
-        return MaterialPageRoute(
-            builder: (_) => const  MainLayout());
 
       case Routes.moviesDetails:
         return MaterialPageRoute(
             builder: (_) => const MoviesDetails());
 
-      case Routes.resetPassword:
-        return MaterialPageRoute(builder: (_) => const ResetPassword());
-      case Routes.updateprofile:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => UpdateProfileCubit()..getUserData(),
-            child: const UpdateProfile(),
-          ),
-        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

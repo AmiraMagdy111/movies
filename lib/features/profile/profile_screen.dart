@@ -13,7 +13,6 @@ class ProfileScreen extends StatelessWidget {
     return BlocBuilder<UpdateProfileCubit, UpdateProfileStates>(
       builder: (context, state) {
         var user = context.read<UpdateProfileCubit>().userModel;
-
         return Scaffold(
           backgroundColor: ColorsManager.primaryBlack,
           body: SafeArea(
@@ -31,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                             backgroundColor: ColorsManager.secondaryGrey,
                             backgroundImage: (user?.profileImage != null && user!.profileImage!.isNotEmpty)
                                 ? NetworkImage(user.profileImage!)
-                                : const AssetImage('assets/images/user.png') as ImageProvider,
+                                : const AssetImage("assets/profileImages/image 1.png") as ImageProvider,
                           ),
                           const SizedBox(height: 8),
                           Text(

@@ -9,11 +9,9 @@ import '../../api/models/Movies.dart';
 
 class SearchTab extends StatefulWidget {
   SearchTab({super.key});
-
   @override
   State<SearchTab> createState() => _SearchTabState();
 }
-
 class _SearchTabState extends State<SearchTab> {
   final searchController = TextEditingController();
   Timer? _debounce;
@@ -65,8 +63,6 @@ class _SearchTabState extends State<SearchTab> {
       });
     }
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
