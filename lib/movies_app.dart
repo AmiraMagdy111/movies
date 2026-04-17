@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/Auth_checker.dart';
 import 'package:movies/core/prefs_manager/prefs_manager.dart';
 import 'package:movies/core/routing/routing_manager.dart';
 
@@ -12,20 +14,21 @@ class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize:Size(393, 841) ,
+      designSize: Size(393, 841),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context,_)=> MaterialApp(
-        theme: ThemeManager.light,
-        darkTheme: ThemeManager.dark,
-        themeMode: ThemeMode.dark,
-        debugShowCheckedModeBanner: false,
-        initialRoute: PrefsManager.getOnboarding() == false
+      builder: (context, _) =>
+          MaterialApp(
+            theme: ThemeManager.light,
+            darkTheme: ThemeManager.dark,
+            themeMode: ThemeMode.dark,
+            debugShowCheckedModeBanner: false,
+            //home: AuthChecker(),
+             initialRoute: PrefsManager.getOnboarding() == false
             ? Routes.onboardingScreen
-            : Routes.loginScreen,
-        onGenerateRoute: appRouter.generateRoute,
-
-      ),
+              : Routes.loginScreen,
+            onGenerateRoute: appRouter.generateRoute,
+          ),
     );
   }
 }

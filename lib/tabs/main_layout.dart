@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/features/profile/profile_screen.dart';
+import 'package:movies/tabs/profile_tab/profile_screen.dart';
 import '../core/assets_image/app_assets.dart';
 import '../tabs/home_tab/home_tab.dart';
 import 'search_tab/search_tab.dart';
@@ -16,9 +16,8 @@ class _MainLayoutState extends State<MainLayout> {
     HomeTab(),
     SearchTab(),
     SearchTab(),
-   ProfileScreen()
+  ProfileScreen()
   ];
-
   final List<List<String>> tabIcons = [
     [IconsManager.homeIcon, IconsManager.exploreIconSelected],
     [IconsManager.searchIcon, IconsManager.searchIconSelected],

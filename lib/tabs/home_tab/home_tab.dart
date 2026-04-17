@@ -118,13 +118,13 @@ class _HomeTabState extends State<HomeTab> {
                                 arguments: filteredMovies[index].id,
                               );
 
-                              // setState(() {
-                              //   genreIndex++;
-                              //   if (genreIndex >= genres.length) {
-                              //     genreIndex = 0;
-                              //   }
-                              //   selectedGenre = genres[genreIndex].name;
-                              // });
+                               setState(() {
+                               genreIndex++;
+                               if (genreIndex >= genres.length) {
+                                 genreIndex = 0;
+                               }
+                                 selectedGenre = genres[genreIndex].name;
+                               });
                             },
                             width: 146.w,
                             movie: filteredMovies[index],

@@ -6,7 +6,7 @@ import 'package:movies/core/helpers/text_manager.dart';
 import 'package:movies/core/theming/styles_manager.dart';
 import 'package:movies/core/utils/ui_utils.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
-import '../../../clean_architecture/cubit/auth_cubit.dart';
+import '../../../clean_architecture/domain/cubit/auth_cubit.dart';
 import '../../../core/helpers/image_icons_svgs_helper.dart';
 import '../../../core/theming/colors_manager.dart';
 import '../../../core/utils/utile_validator.dart';
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit,AuthState>(
       listener: (context,state){
-        if (state is LoginLoading || state is GoogleSignInLoading) {
+        if (state is AuthLoading ) {
           UIUtils.showLoading(context);
         }
         else if (state is AuthError) {
@@ -44,14 +44,14 @@ class _LoginScreenState extends State<LoginScreen> {
             fgColor: ColorsManager.white,
           );
         }
-        else if (state is LoginSuccess || state is GoogleSignInSuccess) {
+        else if (state is AuthSuccess ) {
           UIUtils.hideDialog(context);
           UIUtils.showToastMessage(
             message: "User Logged Successfully",
-            bgColor: Colors.green,
+            bgColor: ColorsManager.green,
             fgColor: ColorsManager.white,
           );
-          Navigator.pushReplacementNamed(context, Routes.mainLayout);
+          Navigator.pushReplacementNamed(context,Routes.mainLayout);
         }
       },
       child: Scaffold(

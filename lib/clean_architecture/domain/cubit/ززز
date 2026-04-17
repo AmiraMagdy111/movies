@@ -1,0 +1,245 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'auth_remote_data_source.dart';
+class AuthFirebaseRemoteDataSource implements AuthRemoteDataSource {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  @override
+  Future<UserCredential> register(
+      { required String email, required String password}) async {
+    UserCredential userCredential = await _firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return userCredential;
+  }
+
+  // Future<void> register({required String email, required String password,
+  //   // required String name,
+  //   // required String phone,
+  //   // required String avatar,
+  // }) async {
+  //
+  //   final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+  //     email: email,
+  //     password: password,
+  //   );
+  //   final user = credential.user;
+  //   if (user == null) throw Exception("User is null");
+  //   final uid = user.uid;
+  //   await FirebaseFirestore.instance.collection('users').doc(uid).set({
+  //     'uid': uid,
+  //     // 'name': name,
+  //     // 'email': email,
+  //     // 'phone': phone,
+  //     // 'profileImage': avatar,
+  //   });
+  // }
+
+  @override
+  Future<UserCredential> login(
+      {required String email, required String password}) async {
+    UserCredential userCredential = await _firebaseAuth
+        .signInWithEmailAndPassword(email: email, password: password);
+    return userCredential;
+  }
+  // Future<void> login({required String email, required String password}) async{
+  //  await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+  // }
+
+  @override
+  Future<void> resetPassword({required String email}) async {
+   await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+ static final GoogleSignIn _googleSignIn= GoogleSignIn.instance;
+
+  @override
+  Future<UserCredential> signInWithGoogle() async{
+
+    await _googleSignIn.initialize(
+        serverClientId: "266835740710-tv1g37pjc9u5nueokih3ca64i0eic9bq.apps.googleusercontent.com"
+    );
+    final GoogleSignInAccount result = await _googleSignIn.authenticate();
+    final googleAuth = result.authentication;
+    final credentials = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken
+    );
+    return await _firebaseAuth.signInWithCredential(credentials);
+  }
+  }
+
+
+// await _firebaseAuth.createUserWithEmailAndPassword(
+//   email: email,
+//   password: password,
+// );
+
+
+
+
+
+
+
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../repository/auth_repository.dart';
+
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit({required this.authRepository}) : super(AuthInitial());
+  final AuthRepository authRepository;
+
+  Future<void> register({
+    required String email,
+    required String password,
+  }) async {
+    emit(RegisterLoading());
+    try {
+      await authRepository.register(
+        email: email,
+        password: password,
+      );
+      emit(RegisterSuccess());
+    } catch (exception) {
+      emit(AuthError(exception.toString()));
+    }
+  }
+
+  Future<void> login({required String email, required String password,}) async {
+    emit(LoginLoading());
+    try {
+      final user = await authRepository.login(
+        email: email,
+        password: password,
+      );
+      emit(LoginSuccess(user));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+}
+  //     await authRepository.login(
+  //       email: email,
+  //       password: password,
+  //     );
+  //     emit(LoginSuccess());
+  //   } catch (exception) {
+  //     emit(AuthError(exception.toString()));
+  //   }
+
+
+
+  Future<void> resetPassword({required String email}) async {
+    emit(ResetPasswordLoading());
+    try {
+      await authRepository.resetPassword(email: email);
+      emit(ResetPasswordSuccess());
+    } catch (exception) {
+      emit(AuthError(exception.toString()));
+    }
+  }
+  Future<void> signInWithGoogle() async {
+    emit(GoogleSignInLoading());
+    try {
+      await authRepository.signInWithGoogle();
+      emit(GoogleSignInSuccess());
+    } catch (exception) {
+      emit(AuthError(exception.toString()));
+    }
+  }
+
+abstract class AuthState {}
+
+class AuthInitial extends AuthState {}
+
+class RegisterLoading extends AuthState {}
+class RegisterSuccess extends AuthState {}
+
+class LoginLoading extends AuthState {
+}
+class LoginSuccess extends AuthState {
+  final UserCredential user;
+  LoginSuccess(this.user);
+}
+
+class ResetPasswordLoading extends AuthState {}
+class ResetPasswordSuccess extends AuthState {}
+
+class GoogleSignInLoading extends AuthState {}
+class GoogleSignInSuccess extends AuthState {}
+
+class AuthError extends AuthState {
+  final String message;
+  AuthError(this.message);
+}
+
+
+
+
+ Future<void> register({
+    required String email,
+    required String password,
+    // required String name,
+    // required String phone,
+    // required String avatar
+  }) async {
+    emit(RegisterLoading());
+    try {
+      // final credential = await authRepository.register(
+      //   email: email,
+      //   password: password,
+      );
+      final firebaseUser = credential.user;
+      if (firebaseUser == null) {
+        throw Exception("User is null");
+      }
+      final uid = firebaseUser.uid;
+      //final userModel = UserModel(
+       // uId: uid,
+      //  name: name,
+      //  phone: phone,
+      //  profileImage: avatar
+     // );
+     // await authRepository.addUser(userModel);
+     // emit(RegisterSuccess(userModel));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+UserModel copyWith({
+    String? name,
+    String? phone,
+    String? profileImage,
+    String? uId,
+  }) {
+    return UserModel(
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      profileImage: profileImage ?? this.profileImage,
+      uId: uId ?? this.uId,
+    );
+  }
+}
+
+
+
+// class RegisterLoading extends AuthState {}
+//
+// class RegisterSuccess extends AuthState {
+//   final UserModel user;
+//   RegisterSuccess(this.user);
+//   }
+//
+// class LoginLoading extends AuthState {}
+//
+// class LoginSuccess extends AuthState {
+//   final UserModel user;
+//   LoginSuccess(this.user);
+// }
+// class ResetPasswordLoading extends AuthState {}
+//
+// class ResetPasswordSuccess extends AuthState {}
+//
+// class GoogleSignInLoading extends AuthState {}
+//
+// class GoogleSignInSuccess extends AuthState {
+//   final UserCredential user;
+//   GoogleSignInSuccess(this.user);
+// }

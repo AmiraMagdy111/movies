@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart' show CupertinoAlertDialog;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 class UIUtils {
   static void showLoading(BuildContext context, {bool dismissible = true}) {
     showDialog(
@@ -19,7 +18,6 @@ class UIUtils {
           ),
         ));
   }
-
   static void hideDialog(BuildContext context) {
     Navigator.pop(context);
   }

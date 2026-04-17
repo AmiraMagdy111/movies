@@ -33,9 +33,6 @@ class Validator {
     if (password == null || password.trim().isEmpty) {
       return "password is required";
     }
-    if (password.length < 6) {
-   return 'Password must be at least 6 characters';
-    }
     return null;
   }
   static String? validateConfrimPassword(String? password,String confirmPassword) {

@@ -12,7 +12,7 @@ import '../../api/models/movies_response/Movies.dart';
 class MoviesDetails extends StatefulWidget {
   final int movieId;
 
-  MoviesDetails({super.key, required this.movieId});
+  const MoviesDetails({super.key, required this.movieId});
 
   @override
   State<MoviesDetails> createState() => _MoviesDetailsState();

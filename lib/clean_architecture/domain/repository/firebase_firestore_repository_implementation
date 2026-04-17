@@ -1,0 +1,11 @@
+
+import 'package:movies/model/user_model/user_model.dart';
+
+import '../../data_source/remote/firebase_firestore_data_source.dart';
+import 'firebase_firestore_repository';
+
+class FirebaseFirestoreRepositoryImplementation implements FirebaseFirestoreRepository {
+  
+  FirebaseFirestoreRepositoryImplementation({required this.firestoreRemoteDataSource});
+ 
+}

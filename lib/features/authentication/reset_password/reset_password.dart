@@ -8,7 +8,7 @@ import 'package:movies/core/utils/utile_validator.dart';
 import 'package:movies/core/widget/custom_text_form_field.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
 
-import '../../../clean_architecture/cubit/auth_cubit.dart';
+import '../../../clean_architecture/domain/cubit/auth_cubit.dart';
 import '../../../core/theming/colors_manager.dart';
 import '../../../core/utils/ui_utils.dart';
 
@@ -25,14 +25,14 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit,AuthState>(
       listener: (context,state){
-        if(state is ResetPasswordLoading){
+        if(state is AuthLoading){
           UIUtils.showLoading(context);
         }else if (state is AuthError){
           UIUtils.hideDialog(context);
           UIUtils.showToastMessage(message: state.message,
               bgColor: Colors.red,
               fgColor: ColorsManager.white);
-        }else if (state is ResetPasswordSuccess){
+        }else if (state is AuthSuccess){
           UIUtils.hideDialog(context);
           UIUtils.showToastMessage(
               message: "Check your email to reset password",
