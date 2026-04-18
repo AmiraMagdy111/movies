@@ -1,23 +1,46 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movies/features/tab_widget/brows_tab/genre_modle/genre_modle.dart';
-
 
 class ApiManager {
-
-  static Future<List<Genre>> getGenres() async {
-
+  static Future<Map<String, dynamic>> getBrowseData() async {
     var url = Uri.parse(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=API_KEY"
+      'https://yts.lt/api/v2/list_movies.json?limit=50',
     );
 
-    var response = await http.get(url);
+    try {
+      var response = await http.get(url);
 
-    var data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
 
-    List genres = data["genres"];
+        List movies = data['data']['movies'] ?? [];
 
-    return genres.map((e) => Genre.fromJson(e)).toList();
+        Set<String> genresSet = {};
+
+        for (var movie in movies) {
+          if (movie['genres'] != null) {
+            for (var genre in movie['genres']) {
+              genresSet.add(genre.toString());
+            }
+          }
+        }
+
+        return {
+          "movies": movies,
+          "genres": genresSet.toList(),
+        };
+      } else {
+        return {
+          "movies": [],
+          "genres": [],
+        };
+      }
+    } catch (e) {
+      print(e);
+      return {
+        "movies": [],
+        "genres": [],
+      };
+    }
   }
-
 }

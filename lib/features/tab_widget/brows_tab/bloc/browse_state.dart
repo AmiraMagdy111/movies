@@ -1,7 +1,3 @@
-
-import '../genre_modle/genre_modle.dart';
-
-
 abstract class BrowseState {}
 
 class BrowseInitial extends BrowseState {}
@@ -9,9 +5,13 @@ class BrowseInitial extends BrowseState {}
 class BrowseLoading extends BrowseState {}
 
 class BrowseSuccess extends BrowseState {
-  List<Genre> genres;
+  final List<String> genres;
+  final List movies;
 
-  BrowseSuccess(this.genres);
+  BrowseSuccess({
+    required this.genres,
+    required this.movies,
+  });
 }
 
 class BrowseError extends BrowseState {}
