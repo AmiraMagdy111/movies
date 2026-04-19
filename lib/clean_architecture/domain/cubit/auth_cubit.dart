@@ -1,7 +1,8 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import '../repository/auth_repository.dart';
+@singleton
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authRepository}) : super(AuthInitial());
   final AuthRepository authRepository;
@@ -13,47 +14,42 @@ class AuthCubit extends Cubit<AuthState> {
     required String avatar
   }) async {
     emit(AuthLoading());
-    try {
-      await authRepository.register(
-          name: name,
-          email: email,
-          password: password,
-          phone: phone,
-          avatar: avatar
-      );
-      emit(AuthSuccess());
-    } on FirebaseAuthException catch (exception) {
-      if(exception.code =='weak-password'){
-        emit(AuthError("Weak password"));
-      }else if (exception.code == 'email-already-in-use' ){
-        emit(AuthError("The account already exists for that email."));
-      } else {
-        emit(AuthError(exception.message ?? "Error"));
-      }
-      } catch (exception) {
-      emit(AuthError(exception.toString()));
-    }
+    final result = await authRepository.register(
+      name: name,
+      email: email,
+      password: password,
+      phone: phone,
+      avatar: avatar,
+    );
+    result.fold((failure) {
+        emit(AuthError(failure.message));
+      },
+          (userCredential) {
+        emit(AuthSuccess());
+      },
+    );
   }
-
-
   Future<void> login({
     required String email,
     required String password,
   }) async {
     emit(AuthLoading());
-    try {
-      await authRepository.login(email: email, password: password);
-      emit(AuthSuccess());
-    }on FirebaseAuthException catch (exception) {
-      if (exception.code == 'invalid-credential') {
-        emit(AuthError("Invalid email or password "));
-      } else {
-        emit(AuthError(exception.message ?? "Error"));
-      }
-    } catch (exception) {
-      emit(AuthError(exception.toString()));
-    }
+
+    final result = await authRepository.login(
+      email: email,
+      password: password,
+    );
+
+    result.fold(
+          (failure) {
+        emit(AuthError(failure.message));
+      },
+          (_) {
+        emit(AuthSuccess());
+      },
+    );
   }
+
   Future<void> resetPassword({required String email}) async {
     emit(AuthLoading());
     try {
@@ -114,3 +110,62 @@ class AuthError extends AuthState {
 // final uid = credential.user!.uid;
 // final userModel = await authRepository.getUser(uid);
 
+
+
+
+// Future<void> login({
+//   required String email,
+//   required String password,
+// }) async {
+//   emit(AuthLoading());
+//   try {
+//     await authRepository.login(email: email, password: password);
+//     emit(AuthSuccess());
+//   }on FirebaseAuthException catch (exception) {
+//     if (exception.code == 'invalid-credential') {
+//       emit(AuthError("Invalid email or password "));
+//     } else {
+//       emit(AuthError(exception.message ?? "Error"));
+//     }
+//   } catch (exception) {
+//     emit(AuthError(exception.toString()));
+//   }
+// }
+// Future<void> resetPassword({required String email}) async {
+//   emit(AuthLoading());
+//   try {
+//     await authRepository.resetPassword(email: email);
+//     emit(AuthSuccess());
+//   } catch (e) {
+//     emit(AuthError(e.toString()));
+//   }
+// }
+// Future<void> register({
+//   required String name,
+//   required String email,
+//   required String password,
+//   required String phone,
+//   required String avatar
+// }) async {
+//   emit(AuthLoading());
+//   try {
+//     await authRepository.register(
+//         name: name,
+//         email: email,
+//         password: password,
+//         phone: phone,
+//         avatar: avatar
+//     );
+//     emit(AuthSuccess());
+//   } on FirebaseAuthException catch (exception) {
+//     if(exception.code =='weak-password'){
+//       emit(AuthError("Weak password"));
+//     }else if (exception.code == 'email-already-in-use' ){
+//       emit(AuthError("The account already exists for that email."));
+//     } else {
+//       emit(AuthError(exception.message ?? "Error"));
+//     }
+//     } catch (exception) {
+//     emit(AuthError(exception.toString()));
+//   }
+// }

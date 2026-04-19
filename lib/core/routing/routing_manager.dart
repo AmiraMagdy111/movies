@@ -38,12 +38,15 @@ class RoutingManager {
 
      case Routes.updateProfile:
      return MaterialPageRoute(
-     builder: (_) => BlocProvider(
-     create: (context) => UpdateProfileCubit(
-     context.read<AuthRepository>(),
-     )..getUserData(),
-     child: const UpdateProfile(),
-     ),
+     builder: (_) => const UpdateProfile(),
+     // case Routes.updateProfile:
+     // return MaterialPageRoute(
+     // builder: (_) => BlocProvider(
+     // create: (context) => UpdateProfileCubit(
+     // context.read<AuthRepository>(),
+     // )..getUserData(),
+     // child: const UpdateProfile(),
+     //),
      );
       // case Routes.updateProfile:
       //   return MaterialPageRoute(

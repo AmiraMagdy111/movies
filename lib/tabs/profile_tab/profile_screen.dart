@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../clean_architecture/domain/repository/auth_repository.dart';
+import '../../core/di/di.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/colors_manager.dart';
 import 'update_profile_cubit.dart';
@@ -17,10 +18,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
      return BlocProvider(
-        create: (context) => UpdateProfileCubit(
-          context.read<AuthRepository>(),
-        )..getUserData(),
-        child: BlocBuilder<UpdateProfileCubit, UpdateProfileStates>(
+         create: (_) => getIt<UpdateProfileCubit>()..getUserData(),
+
+    // BlocProvider(
+    //   create: (context) =>
+    //       UpdateProfileCubit(
+    //           getIt<AuthRepository>()
+    //       ),
+    //   context.read<AuthRepository>(),
+    //   ..getUserData()
+
+       child:  BlocBuilder<UpdateProfileCubit, UpdateProfileStates>(
           builder: (context, state) {
             var user = context.watch<UpdateProfileCubit>().userModel;
         return Scaffold(
@@ -117,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         );
       },
-            ),
+         ),
     );
   }
 

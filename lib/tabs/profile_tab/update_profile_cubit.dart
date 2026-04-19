@@ -2,9 +2,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movies/tabs/profile_tab/update_profile_states.dart';
 import '../../clean_architecture/domain/repository/auth_repository.dart';
 import 'package:movies/model/user_model/user_model.dart';
+@injectable
 class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
   final AuthRepository authRepository;
   UpdateProfileCubit(this.authRepository) : super(UpdateProfileInitial());

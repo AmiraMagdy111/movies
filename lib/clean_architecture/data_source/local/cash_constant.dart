@@ -1,3 +1,3 @@
 abstract class CashConstant {
-  static const String userKey= "user_Key";
+  static const String loginKey = "login_Key";
 }

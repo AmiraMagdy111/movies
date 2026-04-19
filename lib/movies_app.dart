@@ -23,10 +23,10 @@ class MoviesApp extends StatelessWidget {
             darkTheme: ThemeManager.dark,
             themeMode: ThemeMode.dark,
             debugShowCheckedModeBanner: false,
-            //home: AuthChecker(),
-             initialRoute: PrefsManager.getOnboarding() == false
-            ? Routes.onboardingScreen
-              : Routes.loginScreen,
+            home: AuthChecker(),
+            //  initialRoute: PrefsManager.getOnboarding() == false
+            // ? Routes.onboardingScreen
+            //   : Routes.loginScreen,
             onGenerateRoute: appRouter.generateRoute,
           ),
     );

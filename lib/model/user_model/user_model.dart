@@ -1,4 +1,5 @@
 class UserModel {
+  static UserModel ? loggedInUser;
   final String ?id;
   final String? name;
   final String? email;

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movies/clean_architecture/data_source/remote/firebase_firestore_data_source.dart';
 import 'package:movies/model/user_model/user_model.dart';
-
+@LazySingleton(as: FirebaseFirestoreDataSource)
 class FirebaseFirestoreRemoteDataSource  implements FirebaseFirestoreDataSource{
-
   final FirebaseFirestore dataBase = FirebaseFirestore.instance;
    CollectionReference<UserModel>getUserCollection(){
     CollectionReference <UserModel> userCollection = dataBase.collection("Users").withConverter(
