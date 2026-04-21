@@ -7,4 +7,5 @@ class Routes{
   static const String homeTab = '/homeTab';
   static const String moviesDetails = '/moviesDetails';
   static const String mainLayout = '/mainLayout';
+  static const String browseScreen = '/browseScreen';
 }
