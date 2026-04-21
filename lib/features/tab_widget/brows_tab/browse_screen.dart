@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
-
 import 'bloc/browse_bloc.dart';
 import 'bloc/browse_event.dart';
 import 'bloc/browse_state.dart';
@@ -43,20 +40,16 @@ class _BrowseScreenState extends State<BrowseScreen> {
             child: CircularProgressIndicator(),
           );
         }
-
         else if (state is BrowseSuccess) {
 
- 
           if (selectedGenre == null && state.genres.isNotEmpty) {
             selectedGenre = state.genres[0];
           }
-
           var moviesToShow =
           filterMovies(state.movies, selectedGenre);
 
           return Column(
             children: [
-
               CategoryListWidget(
                 genres: state.genres,
                 selectedGenre: selectedGenre,
@@ -66,8 +59,6 @@ class _BrowseScreenState extends State<BrowseScreen> {
                   });
                 },
               ),
-
-
               Expanded(
                 child: MoviesGridWidget(
                   movies: moviesToShow, 

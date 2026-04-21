@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/core/theming/colors_manager.dart';
 
 class MovieCardWidget extends StatelessWidget {
   final Map movie;
@@ -7,7 +9,6 @@ class MovieCardWidget extends StatelessWidget {
     super.key,
     required this.movie,
   });
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +16,7 @@ class MovieCardWidget extends StatelessWidget {
       children: [
         Expanded(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.r),
             child:
             Image.network(
               movie['medium_cover_image'] ?? '',
@@ -30,13 +31,16 @@ class MovieCardWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 5),
+        SizedBox(height: 5.h),
         Text(
           movie['title'] ?? '',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),
-        ),
+          style:TextStyle(color: ColorsManager.white,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none),
+       ),
       ],
     );
   }

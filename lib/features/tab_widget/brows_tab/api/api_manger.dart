@@ -6,7 +6,6 @@ class ApiManager {
     var url = Uri.parse(
       'https://yts.lt/api/v2/list_movies.json?limit=50',
     );
-
     try {
       var response = await http.get(url);
 

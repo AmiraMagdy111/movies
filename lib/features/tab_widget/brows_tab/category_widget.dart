@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:movies/core/theming/colors_manager.dart';
 
 class CategoryListWidget extends StatelessWidget {
   final List<String> genres;
@@ -15,17 +18,16 @@ class CategoryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (genres.isEmpty) {
-      return const SizedBox(
-        height: 50,
+      return SizedBox(
+        height: 50.r,
         child: Center(child: Text("No Categories")),
       );
     }
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
+    return SafeArea(
       child: SizedBox(
-        height: 50,
+        height: 50.h,
         child: ListView.builder(
+           padding: EdgeInsets.zero,
           scrollDirection: Axis.horizontal,
           itemCount: genres.length,
           itemBuilder: (context, index) {
@@ -37,27 +39,28 @@ class CategoryListWidget extends StatelessWidget {
               onTap: () => onTap(genre),
               child:
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 6),
-                padding: const EdgeInsets.symmetric(
+                margin: REdgeInsets.symmetric(horizontal: 6),
+                padding:  REdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? Colors.orange
+                      ? ColorsManager.primaryOrange
                       : Colors.transparent,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   border: Border.all(color: Colors.orange),
                 ),
                 child: Text(
                   genre,
                   style:
-                  TextStyle(
-                    color: isSelected
-                        ? Colors.black
-                        : Colors.orange,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                  GoogleFonts.inter(
+                      color: isSelected
+                          ? ColorsManager.black
+                          : ColorsManager.primaryOrange,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.sp,
+                      decoration: TextDecoration.none
                   ),
                 ),
               ),
