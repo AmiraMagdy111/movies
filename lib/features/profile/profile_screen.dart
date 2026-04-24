@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/features/profile/wathchlist_cubit.dart';
 import '../../core/routing/routes.dart';
 import '../../core/theming/colors_manager.dart';
 import 'update_profile_cubit.dart';
 import 'update_profile_states.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
 
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<WatchlistCubit>().getWatchList("YOUR_TOKEN");
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UpdateProfileCubit, UpdateProfileStates>(
@@ -86,18 +96,38 @@ class ProfileScreen extends StatelessWidget {
                     _buildTabItem(Icons.history, "History", false),
                   ],
                 ),
-                const Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.movie_filter_outlined, size: 80, color: Colors.white10),
-                        SizedBox(height: 10),
-                        Text("No content yet", style: TextStyle(color: Colors.white24)),
-                      ],
+                 Expanded(
+                  child: BlocBuilder<WatchlistCubit, WatchlistState>(
+                      builder: (context, state) {
+                        if (state is WatchlistLoading) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                        else if (state is WatchlistLoaded) {
+                          return ListView.builder(
+                            itemCount: state.movies.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(state.movies[index].name, style: const TextStyle(color: Colors.white)),
+                              );
+                            },
+                          );
+                        }
+                        else if (state is WatchlistError) {
+                          return Center(child: Text(state.message, style: const TextStyle(color: Colors.red)));
+                        }
+
+                        return const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.movie_filter_outlined, size: 80, color: Colors.white10),
+                            SizedBox(height: 10),
+                            Text("No content yet", style: TextStyle(color: Colors.white24)),
+                          ],
+                        );
+                      },
                     ),
-                  ),
-                )
+
+                ),
               ],
             ),
           ),

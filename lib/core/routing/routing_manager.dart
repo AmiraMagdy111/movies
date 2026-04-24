@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/routing/routes.dart';
-import 'package:movies/features/profile/update_profile_ui.dart';
-
 import '../../features/authentication/login/login_screen.dart';
 import '../../features/home/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/features/profile/update_profile_cubit.dart';
+import '../../features/profile/profile_screen.dart';
+import '../../features/profile/wathchlist_cubit.dart';
+import '../../services/api_service.dart';
 class RoutingManager {
   RoutingManager();
 
@@ -19,11 +20,14 @@ class RoutingManager {
         );
         case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-      case Routes.updateprofile:
+      case Routes.profileScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => UpdateProfileCubit()..getUserData(),
-            child: const UpdateProfile(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => UpdateProfileCubit()..getUserData()),
+              BlocProvider(create: (context) => WatchlistCubit(ApiService())),
+            ],
+            child: const ProfileScreen(),
           ),
         );
       default:
