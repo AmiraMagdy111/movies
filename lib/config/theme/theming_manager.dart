@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/helpers/font_weight_helper.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 class ThemeManager {
   static final ThemeData light = ThemeData(
 
@@ -19,9 +19,6 @@ class ThemeManager {
       titleTextStyle: TextStyle(fontSize: 20,
         fontWeight: FontWeightHelper.regular,
         color: ColorsManager.primaryOrange,),
-
-      //foregroundColor: ColorsManager.primaryLight,
-      //titleTextStyle: StylesManager.googleFont20LightMedium,
     ),
     scaffoldBackgroundColor: ColorsManager.primaryBlack,
     textTheme: TextTheme(

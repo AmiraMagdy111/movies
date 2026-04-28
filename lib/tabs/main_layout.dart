@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
+import 'package:movies/tabs/profile_tab/profile_screen.dart';
 import '../core/assets_image/app_assets.dart';
 import '../tabs/home_tab/home_tab.dart';
-import 'home_tab/search_tab.dart';
-
+import 'search_tab/search_tab.dart';
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
   @override
   State<MainLayout> createState() => _MainLayoutState();
 }
-
 class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
-
   final List<Widget> tabs = [
     HomeTab(),
     SearchTab(),
-
+    SearchTab(),
+  ProfileScreen()
   ];
-
   final List<List<String>> tabIcons = [
     [IconsManager.homeIcon, IconsManager.exploreIconSelected],
     [IconsManager.searchIcon, IconsManager.searchIconSelected],
@@ -42,7 +40,9 @@ class _MainLayoutState extends State<MainLayout> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        backgroundColor: ColorsManager.secondaryGrey,
+        backgroundColor: ColorsManager.primaryBlack,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: List.generate(4, (index) {
           return BottomNavigationBarItem(
             icon: Image.asset(
@@ -52,7 +52,7 @@ class _MainLayoutState extends State<MainLayout> {
               width: 24,
               height: 24,
             ),
-            label: ['', '', '', ''][index],
+            label: ["Home", "Search", "Browse", "Profile"][index],
           );
         }),
       ),

@@ -5,10 +5,10 @@ import 'package:movies/api/api_service.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
 import 'package:movies/model/genre_model/genre_model.dart';
 import 'package:movies/tabs/home_tab/widgets/background_gradient.dart';
-import 'package:movies/tabs/home_tab/widgets/movie_card_list_view.dart';
+import 'package:movies/tabs/home_tab/widgets/movie_card.dart';
 import 'package:movies/tabs/home_tab/widgets/movies_carousel.dart';
 import 'package:movies/tabs/home_tab/widgets/section_header.dart';
-import '../../api/models/Movies_response.dart';
+import '../../api/models/movies_response/Movies_response.dart';
 import '../../core/routing/routes.dart';
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -27,17 +27,15 @@ class _HomeTabState extends State<HomeTab> {
     moviesFuture = ApiService.getLatestMovies();
     selectedGenre = genres[genreIndex].name;
   }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<MoviesResponse>(
       future: moviesFuture,
-      builder: (context, snapshot) {
 
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-
         if (snapshot.hasError) {
           return Center(child: Text(snapshot.error.toString()));
         }
@@ -55,7 +53,7 @@ class _HomeTabState extends State<HomeTab> {
             Positioned.fill(
               child: movies.isNotEmpty
                   ? Image.network(
-                movies[currentIndex].largeCoverImage ?? "",
+                movies[currentIndex].largeCoverImage ?? OnboardingImage.page1,
                 fit: BoxFit.cover,
               )
                   : const SizedBox(),
@@ -90,17 +88,16 @@ class _HomeTabState extends State<HomeTab> {
                       SizedBox(height: 30.h),
                       SectionHeader(
                         title: selectedGenre,
-                        onPress: () async {
-                          await Navigator.pushNamed(
-                              context, Routes.moviesDetails);
-                          setState(() {
-                            genreIndex++;
-                            if (genreIndex >= genres.length) {
-                              genreIndex = 0;
-                            }
-                            selectedGenre = genres[genreIndex].name;
-                          });
-                        },
+                        onPress: (){},
+                          // await Navigator.pushNamed(
+                          //     context, Routes.moviesDetails);
+                         // setState(() {
+                          //  genreIndex++;
+                           // if (genreIndex >= genres.length) {
+                        //     // genreIndex = 0;
+                           // }
+                       //     selectedGenre = genres[genreIndex].name;
+                          //});
                       ),
                       SizedBox(height: 12.h),
                       SizedBox(
@@ -112,9 +109,26 @@ class _HomeTabState extends State<HomeTab> {
                           separatorBuilder: (_, __) =>
                               SizedBox(width: 16.w),
                           itemBuilder: (context, index) {
-                            return MovieCardListView(
-                              movie: filteredMovies[index],
+                            return MovieCard(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.moviesDetails,
+                                arguments: filteredMovies[index].id,
+                              );
+
+                               setState(() {
+                               genreIndex++;
+                               if (genreIndex >= genres.length) {
+                                 genreIndex = 0;
+                               }
+                                 selectedGenre = genres[genreIndex].name;
+                               });
+                            },
+                            width: 146.w,
+                            movie: filteredMovies[index],
                             );
+
                           },
                         ),
                       ),

@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/assets_image/app_assets.dart';
 
 class AvatarSelector extends StatefulWidget {
-  const AvatarSelector({Key? key}) : super(key: key);
+  final Function(String) onAvatarSelected;
+  const AvatarSelector({Key? key,required this.onAvatarSelected}) : super(key: key);
 
   @override
   State<AvatarSelector> createState() => _AvatarSelectorState();
@@ -30,6 +31,7 @@ class _AvatarSelectorState extends State<AvatarSelector> {
             setState(() {
               selectedIndex = index;
             });
+            widget.onAvatarSelected(avatars[index]);
           },
           child: Container(
             margin: REdgeInsets.symmetric(horizontal: 8),

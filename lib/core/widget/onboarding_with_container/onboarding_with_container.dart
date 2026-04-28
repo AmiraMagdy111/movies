@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
 import 'package:movies/core/widget/custom_container.dart';
 import '../../../model/onboarding_model/onboarding_model.dart';
 import '../../helpers/font_weight_helper.dart';
-import '../../theming/styles_manager.dart';
+import '../../helpers/styles_manager.dart';
+import '../../onboarding_text/onboarding_text.dart';
 import '../onboarding_elevated_bottom.dart';
 import '../custom_outlined_bottom.dart';
 class OnboardingWithContainer extends StatelessWidget {

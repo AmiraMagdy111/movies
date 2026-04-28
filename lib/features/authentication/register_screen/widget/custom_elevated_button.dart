@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -14,6 +14,7 @@ class CustomElevatedButton extends StatelessWidget {
   final String text;
   final Widget? prefixIcon;
   final VoidCallback onPress;
+
 
   @override
   Widget build(BuildContext context) {
