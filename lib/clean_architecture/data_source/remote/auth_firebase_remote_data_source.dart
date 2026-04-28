@@ -79,7 +79,3 @@ class AuthFirebaseRemoteDataSource implements AuthRemoteDataSource {
     }
   }
 }
-// } else {
-//   throw RemoteException(
-//     message: exception.message ?? "Error",
-//   );

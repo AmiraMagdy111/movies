@@ -19,9 +19,6 @@ class ThemeManager {
       titleTextStyle: TextStyle(fontSize: 20,
         fontWeight: FontWeightHelper.regular,
         color: ColorsManager.primaryOrange,),
-
-      //foregroundColor: ColorsManager.primaryLight,
-      //titleTextStyle: StylesManager.googleFont20LightMedium,
     ),
     scaffoldBackgroundColor: ColorsManager.primaryBlack,
     textTheme: TextTheme(

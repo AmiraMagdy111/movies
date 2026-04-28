@@ -8,7 +8,7 @@ class CustomElevatedButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPress,
-    this.prefixIcon, required buttonText,
+    this.prefixIcon,
   });
 
   final String text;

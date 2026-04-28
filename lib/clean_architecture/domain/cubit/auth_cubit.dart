@@ -1,19 +1,24 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/auth_repository.dart';
+
 @singleton
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authRepository}) : super(AuthInitial());
+
   final AuthRepository authRepository;
+
   Future<void> register({
     required String name,
     required String email,
     required String password,
     required String phone,
-    required String avatar
+    required String avatar,
   }) async {
     emit(AuthLoading());
+
     final result = await authRepository.register(
       name: name,
       email: email,
@@ -21,14 +26,16 @@ class AuthCubit extends Cubit<AuthState> {
       phone: phone,
       avatar: avatar,
     );
+
     result.fold((failure) {
         emit(AuthError(failure.message));
       },
           (userCredential) {
-        emit(AuthSuccess());
+        emit(AuthSuccess(userCredential));
       },
     );
   }
+
   Future<void> login({
     required String email,
     required String password,
@@ -40,21 +47,21 @@ class AuthCubit extends Cubit<AuthState> {
       password: password,
     );
 
-    result.fold(
-          (failure) {
+    result.fold((failure) {
         emit(AuthError(failure.message));
       },
-          (_) {
-        emit(AuthSuccess());
+          (userCredential) {
+        emit(AuthSuccess(userCredential));
       },
     );
   }
 
   Future<void> resetPassword({required String email}) async {
     emit(AuthLoading());
+
     try {
       await authRepository.resetPassword(email: email);
-      emit(AuthSuccess());
+      emit(ResetPasswordSuccess());
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -62,29 +69,36 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
-    try {
-      final user = await authRepository.signInWithGoogle();
-      // emit(AuthSuccess(user));
-    } catch (e) {
-      emit(AuthError(e.toString()));
-    }
+
+    final result = await authRepository.signInWithGoogle();
+
+    result.fold((failure) {
+        emit(GoogleError(failure.message));
+      },
+          (userCredential) {
+        emit(AuthSuccess(userCredential));
+      },
+    );
   }
 }
 
-
 abstract class AuthState {}
-
 class AuthInitial extends AuthState {}
 class AuthLoading extends AuthState {}
-class AuthSuccess  extends AuthState {}
+class AuthSuccess extends AuthState {
+  final UserCredential user;
+  AuthSuccess(this.user);
+}
+
+class ResetPasswordSuccess extends AuthState {}
 class AuthError extends AuthState {
   final String message;
   AuthError(this.message);
-
-
-
 }
 
+class GoogleError extends AuthError {
+  GoogleError(super.message);
+}
 
 // final firebaseUser = credential.user;
 // if (firebaseUser == null) {

@@ -178,7 +178,6 @@ class UpdateProfileState extends State<UpdateProfile> {
                       children: [
                         CustomElevatedButton(
                           onPress: () => cubit.updateProfile(),
-                          buttonText: 'Save Changes',
                           text: 'Save Changes',
                         ),
                         SizedBox(height: 15.h),
@@ -203,17 +202,3 @@ class UpdateProfileState extends State<UpdateProfile> {
           );
         }
         }
-
-
-// @override
-// initState() {
-//   super.initState();
-//   context.watch<UpdateProfileCubit>().getUserData();
-// bool isFirstLoad = true;
-//  @override
-//  void didChangeDependencies() {
-//    super.didChangeDependencies();
-//    if (isFirstLoad) {
-//      context.read<UpdateProfileCubit>().getUserData();
-//      isFirstLoad = false;
-//    }

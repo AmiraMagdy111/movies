@@ -17,7 +17,7 @@ abstract class AuthRepository{
 
   Future<void>resetPassword({required String email
   });
-  Future<UserCredential> signInWithGoogle();
+  Future<Either<Failure, UserCredential>> signInWithGoogle();
    Future<void>addUser(UserModel user);
    Future<UserModel> getUser(String uid);
    Future<void> updateUser({required UserModel user});

@@ -1,4 +1,3 @@
-class Failure {
-  String message;
+class Failure {String message;
   Failure({required this.message});
 }

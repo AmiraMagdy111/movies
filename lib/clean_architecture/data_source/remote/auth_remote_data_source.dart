@@ -6,5 +6,5 @@ abstract class AuthRemoteDataSource {
     });
    Future<UserCredential>login({required String email , required String password});
    Future<void>resetPassword({required String email});
-   Future<void> signInWithGoogle();
+   Future<UserCredential> signInWithGoogle();
 }

@@ -171,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     validator: Validator.validatePhone
                   ),
                   SizedBox(height: 22.h),
-                   CustomElevatedButton(text: 'Create Account',buttonText: "",
+                   CustomElevatedButton(text: 'Create Account',
                         onPress: _createAccount
                       // if(_formKey.currentState!.validate()){
                       //   print('Form is Valid');

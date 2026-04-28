@@ -1,4 +1,5 @@
 
+
 import'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
@@ -74,9 +75,13 @@ import 'auth_repository.dart';
    }
 
    @override
-   Future<UserCredential> signInWithGoogle() {
-     // TODO: implement signInWithGoogle
-     throw UnimplementedError();
+   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+     try {
+       final userCredential = await remoteDataSource.signInWithGoogle();
+       return Right(userCredential);
+     } on AppException catch (exception) {
+       return Left(Failure(message: exception.message));
+     }
    }
    @override
    Future<void> addUser(UserModel user) {
