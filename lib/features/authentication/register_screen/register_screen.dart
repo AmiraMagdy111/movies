@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/routing/routes.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 import 'package:movies/core/utils/ui_utils.dart';
 import 'package:movies/core/utils/utile_validator.dart';
 import 'package:movies/features/authentication/register_screen/widget/avatar_selector.dart';

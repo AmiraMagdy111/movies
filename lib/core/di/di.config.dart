@@ -30,7 +30,6 @@ import 'package:movies/clean_architecture/domain/repository/auth_repository.dart
 import 'package:movies/clean_architecture/domain/repository/auth_repository_implementation.dart'
     as _i358;
 import 'package:movies/tabs/profile_tab/update_profile_cubit.dart' as _i544;
-
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
@@ -60,6 +59,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i252.AuthCubit>(
       () => _i252.AuthCubit(authRepository: gh<_i515.AuthRepository>()),
     );
+
     return this;
   }
 }

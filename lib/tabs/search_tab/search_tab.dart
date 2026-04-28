@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
 import 'package:movies/core/routing/routes.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 import 'package:movies/core/widget/custom_text_form_field.dart';
 import 'package:movies/tabs/home_tab/widgets/movie_card.dart';
 import '../../api/api_service.dart';
 import '../../api/models/movies_response/Movies.dart';
 
 class SearchTab extends StatefulWidget {
-  SearchTab({super.key});
+  const SearchTab({super.key});
   @override
   State<SearchTab> createState() => _SearchTabState();
 }

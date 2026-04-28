@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 import 'package:movies/core/widget/custome_elevated_button.dart';
 import '../../core/routing/routes.dart';
 import '../../core/utils/ui_utils.dart';

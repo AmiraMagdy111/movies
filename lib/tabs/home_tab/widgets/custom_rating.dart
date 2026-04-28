@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/theming/colors_manager.dart';
-import '../../../core/theming/styles_manager.dart';
+import '../../../core/helpers/styles_manager.dart';
 class CustomRating extends StatelessWidget {
   final double rating;
   const CustomRating({super.key,required this.rating});

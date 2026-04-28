@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 import '../../../core/theming/colors_manager.dart';
 
 

@@ -1,6 +1,35 @@
 import 'Torrents.dart';
 import '../movies_details_response/cast_model.dart';
 class Movies {
+  int? id;
+  String? url;
+  String? imdbCode;
+  String? title;
+  String? titleEnglish;
+  String? titleLong;
+  String? slug;
+  int? year;
+  double? rating;
+  int? runtime;
+  List<String>? genres;
+  String? summary;
+  String? descriptionFull;
+  String? synopsis;
+  String? ytTrailerCode;
+  String? language;
+  String? mpaRating;
+  String? backgroundImage;
+  String? backgroundImageOriginal;
+  String? smallCoverImage;
+  String? mediumCoverImage;
+  String? largeCoverImage;
+  String? state;
+  List<Torrents>? torrents;
+  String? dateUploaded;
+  int? dateUploadedUnix;
+  int? likeCount;
+  List<String>? images;
+  List<CastModel>? cast;
   Movies({
       this.id, 
       this.url, 
@@ -77,35 +106,6 @@ class Movies {
     dateUploaded = json['date_uploaded'];
     dateUploadedUnix = json['date_uploaded_unix'];
   }
-  int? id;
-  String? url;
-  String? imdbCode;
-  String? title;
-  String? titleEnglish;
-  String? titleLong;
-  String? slug;
-  int? year;
-  double? rating;
-  int? runtime;
-  List<String>? genres;
-  String? summary;
-  String? descriptionFull;
-  String? synopsis;
-  String? ytTrailerCode;
-  String? language;
-  String? mpaRating;
-  String? backgroundImage;
-  String? backgroundImageOriginal;
-  String? smallCoverImage;
-  String? mediumCoverImage;
-  String? largeCoverImage;
-  String? state;
-  List<Torrents>? torrents;
-  String? dateUploaded;
-  int? dateUploadedUnix;
-  int? likeCount;
-  List<String>? images;
-  List<CastModel>? cast;
 
 
 

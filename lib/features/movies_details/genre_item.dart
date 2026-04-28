@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/styles_manager.dart';
-
+import 'package:movies/core/helpers/styles_manager.dart';
 class GenreItem extends StatelessWidget {
   final String text;
   const GenreItem({super.key,required this.text});

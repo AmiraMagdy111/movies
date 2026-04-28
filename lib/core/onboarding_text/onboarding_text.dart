@@ -1,3 +1,4 @@
+
 class OnboardingTexts{
   /// page 1
   static const String titleBadge1 = "Find Your Next Favorite Movie Here";

@@ -23,10 +23,7 @@ class AuthFirebaseRemoteDataSource implements AuthRemoteDataSource {
           throw RemoteException(
             message: "The account already exists for that email.",
           );
-        // } else {
-        //   throw RemoteException(
-        //     message: exception.message ?? "Error",
-        //   );
+
         }
       }
     }
@@ -82,3 +79,7 @@ class AuthFirebaseRemoteDataSource implements AuthRemoteDataSource {
     }
   }
 }
+// } else {
+//   throw RemoteException(
+//     message: exception.message ?? "Error",
+//   );

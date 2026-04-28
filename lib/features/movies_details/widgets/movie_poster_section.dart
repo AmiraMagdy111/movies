@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies/core/assets_image/app_assets.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 class MoviePosterSection extends StatelessWidget {
   final String image;
   final String title;

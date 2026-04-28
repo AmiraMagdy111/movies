@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
-import 'package:movies/core/theming/styles_manager.dart';
+import 'package:movies/core/helpers/styles_manager.dart';
 import 'package:movies/core/widget/onboarding_elevated_bottom.dart';
 import '../../../model/onboarding_model/onboarding_model.dart';
+import '../../onboarding_text/onboarding_text.dart';
 
 class OnboardingWithSimple extends StatelessWidget {
   final OnboardingModel onboardingDataModel;

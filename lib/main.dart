@@ -27,8 +27,6 @@ void main() async {
           create: (_) => getIt<AuthCubit>(),
         ),
         BlocProvider(create: (_) => getIt<UpdateProfileCubit>()),
-        // BlocProvider(
-        //   create: (_) => getIt<UpdateProfileCubit>(),
       ],
       child: MoviesApp(
         appRouter: RoutingManager(),
@@ -36,31 +34,3 @@ void main() async {
     ),
   );
 }
-// void main() async {
-//   configureDependencies();
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//       options: DefaultFirebaseOptions.currentPlatform
-//   );
-//   await PrefsManager.init();
-//   runApp BlocProvider(
-//       // providers: [
-//       //   RepositoryProvider<AuthRepository>(
-//           create: (_) => getIt<AuthCubit>()
-//       //       firestoreRemoteDataSource: FirebaseFirestoreRemoteDataSource(),
-//       //       remoteDataSource: AuthFirebaseRemoteDataSource(),
-//       //       localDataSource: AuthSharedPrefsLocalDataSource(),
-//       //     ),
-//       //   ),
-//       // ],
-//       child: MultiBlocProvider(
-//           providers: [
-//             BlocProvider(
-//               create: (context) => AuthCubit(
-//                 authRepository: context.read<AuthRepository>(),
-//               ),
-//             ),
-//           ],
-//           child:
-//           MoviesApp(appRouter: RoutingManager()))));
-// }

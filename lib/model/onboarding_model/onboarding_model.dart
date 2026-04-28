@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/theming/colors_manager.dart';
-import 'package:movies/core/theming/onboarding_image/onboarding_image.dart';
-import 'package:movies/core/theming/onboarding_text/onboarding_text.dart';
+import '../../core/assets_image/app_assets.dart';
+import '../../core/onboarding_text/onboarding_text.dart';
 class OnboardingModel{
   final String image;
   final String title;

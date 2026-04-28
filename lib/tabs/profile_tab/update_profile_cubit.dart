@@ -15,6 +15,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
   String selectedAvatar = 'assets/profileImages/image 1.png';
   UserModel? userModel;
   //get userModel => null;
+
   Future<void> getUserData() async {
     emit(GetUserLoading());
 
@@ -23,18 +24,20 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
       if (firebaseUser == null) throw Exception("User not logged in");
 
       final user = await authRepository.getUser(firebaseUser.uid);
-
+      if (isClosed) return;
        nameController.text = user.name ?? "" ;
        phoneController.text = user.phone ?? "";
       selectedAvatar = user.profileImage ?? "";
-
       userModel = user;
 
       emit(GetUserSuccess());
     } catch (e) {
-      emit(UpdateProfileError(e.toString()));
+      if (!isClosed) {
+        emit(UpdateProfileError(e.toString()));
+      }
     }
   }
+
   Future<void> updateProfile() async {
     emit(UpdateProfileLoading());
     try {
@@ -46,9 +49,12 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
         profileImage: selectedAvatar,
       );
       await authRepository.updateUser(user: updatedUser);
+      if (isClosed) return;
       emit(UpdateProfileSuccess());
     } catch (e) {
-      emit(UpdateProfileError(e.toString()));
+      if (!isClosed) {
+        emit(UpdateProfileError(e.toString()));
+      }
     }
   }
 
@@ -60,9 +66,12 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
       String uid = user.uid;
       await authRepository.deleteUser(uid);
       await user.delete();
+      if (isClosed) return;
       emit(DeleteAccountSuccess());
     } catch (e) {
-      emit(UpdateProfileError(e.toString()));
+      if (!isClosed) {
+        emit(UpdateProfileError(e.toString()));
+      }
     }
   }
-}
+  }

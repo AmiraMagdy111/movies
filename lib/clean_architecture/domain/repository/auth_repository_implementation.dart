@@ -1,8 +1,10 @@
 
-import 'package:dartz/dartz.dart';
+import'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies/clean_architecture/data_source/local/auth_local_data_source.dart';
+import 'package:movies/model/history_model/history_model.dart';
+import 'package:movies/model/watchlist_movies_model/watchlist_movies_model.dart';
  import '../../../core/errors/app_exception.dart';
 import '../../../core/errors/failure.dart';
 import '../../../model/user_model/user_model.dart';
@@ -63,7 +65,7 @@ import 'auth_repository.dart';
        await localDataSource.saveLoginUser(uid);
        return Right(userCredential);
      } on AppException catch (exception) {
-       return left(Failure(message: exception.message));
+       return Left(Failure(message: exception.message));
      }
    }
    @override
@@ -93,5 +95,41 @@ import 'auth_repository.dart';
    Future<void> deleteUser(String uid) {
     return firestoreRemoteDataSource.deleteUserFromFireStore(uid: uid);
    }
+
+  @override
+  Future<void> addMovie({required WatchlistMoviesModel movie, required String uid}) {
+  return firestoreRemoteDataSource.addMovieToFirestore(movie: movie, uid: uid);
+  }
+
+  @override
+  Stream<List<WatchlistMoviesModel>>getMoviesFromFirestore({
+    required String uid,}) {
+    return firestoreRemoteDataSource.getMoviesFromFirestore( uid: uid);
+  }
+
+  @override
+  Future<void> addHistoryToFirestore({required HistoryModel history, required String uid}) {
+   return firestoreRemoteDataSource.addHistoryToFirestore(history: history, uid: uid);
+  }
+
+  @override
+  Stream<List<HistoryModel>> getHistoryFromFirestore({required String uid}) {
+   return firestoreRemoteDataSource.getHistoryFromFirestore(uid: uid);
+  }
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
