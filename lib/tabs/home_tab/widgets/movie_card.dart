@@ -10,6 +10,7 @@ class MovieCard extends StatelessWidget {
   final double? rating;
   final VoidCallback? onTap;
   final double? width;
+  final String? title;
 
   const MovieCard({
     super.key,
@@ -18,6 +19,7 @@ class MovieCard extends StatelessWidget {
     this.rating,
     this.onTap,
     this.width,
+    this.title
   });
 
   @override
@@ -32,25 +34,38 @@ class MovieCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Stack(
+      child: Column(
         children: [
-          Container(
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.r),
-              image: DecorationImage(
-                image: isValidImage
-                    ? NetworkImage(displayImage)
-                    : const AssetImage(OnboardingImage.page1),
-                fit: BoxFit.cover,
+          Stack(
+            children: [
+              Container(
+                width: width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.r),
+                  image: DecorationImage(
+                    image: isValidImage
+                        ? NetworkImage(displayImage)
+                        : const AssetImage(OnboardingImage.page1),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Positioned(
+                top: 13,
+                left: 14,
+                child: CustomRating(
+                  rating: displayRating,
+                ),
+              ),
+            ],
           ),
-          Positioned(
-            top: 13,
-            left: 14,
-            child: CustomRating(
-              rating: displayRating,
+          SizedBox(height: 6.h),
+          Text(
+            title ?? movie?.title ?? '',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.bold,decoration: TextDecoration.none
             ),
           ),
         ],

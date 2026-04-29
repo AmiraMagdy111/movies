@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/routing/routes.dart';
-import 'package:movies/features/tab_widget/brows_tab/browse_screen.dart';
 import 'package:movies/tabs/main_layout.dart';
 import 'package:movies/tabs/profile_tab/update_profile_ui.dart';
 import '../../features/authentication/login/login_screen.dart';
@@ -8,6 +7,8 @@ import '../../features/authentication/register_screen/register_screen.dart';
 import '../../features/movies_details/movies_details.dart';
 import '../../features/onboarding_screen/onboarding_screen.dart';
 import 'package:movies/features/authentication/reset_password/reset_password.dart';
+
+import '../../tabs/browse_tab/browse_screen.dart';
 import '../../tabs/home_tab/home_tab.dart';
 
 class RoutingManager {

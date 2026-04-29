@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:movies/features/tab_widget/brows_tab/movie_card_widget.dart';
+import 'package:movies/core/routing/routes.dart';
+import 'movie_card_widget.dart';
 
 class MoviesGridWidget extends StatelessWidget {
   final List movies;
-  const MoviesGridWidget({super.key, required this.movies});
+  const MoviesGridWidget({super.key,
+    required this.movies});
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: EdgeInsets.zero,
+      padding: EdgeInsets.symmetric(vertical:25),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 0.67,
@@ -17,8 +19,11 @@ class MoviesGridWidget extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (context, index) {
         return
-          MovieCardWidget(
-            movie: movies[index],
+            MovieCardWidget(onTap: () {
+              Navigator.pushNamed(context, Routes.moviesDetails, arguments: movies[index]['id'],
+              );
+            },
+              movie: movies[index],
           );
       },
     );

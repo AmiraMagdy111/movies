@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/browse_bloc.dart';
 import 'bloc/browse_event.dart';
 import 'bloc/browse_state.dart';
-import 'category_widget.dart';
-import 'movie_grid_widget.dart';
+import 'widget/category_widget.dart';
+import 'widget/movie_grid_widget.dart';
 
 class BrowseScreen extends StatefulWidget {
   const BrowseScreen({super.key});
@@ -61,7 +61,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
               ),
               Expanded(
                 child: MoviesGridWidget(
-                  movies: moviesToShow, 
+                  movies: moviesToShow,
                 ),
               ),
             ],
